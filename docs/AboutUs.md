@@ -36,7 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/joshenx)] [[portfolio](team/joshenx.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: UI, Coding Standard
 
 ### Jean Doe
 
