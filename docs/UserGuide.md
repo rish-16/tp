@@ -73,19 +73,20 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Create Patient Record: `create -p`
 
-Adds a person to the address book.
+Adds a Patient to the record system.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `create -p f/FIRST_NAME n/GIVEN_NAME m/[MEDICAL_HISTORY]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+- `[MEDICAL_HISTORY]` is optional. If `[MEDICAL_HISTORY]` is not given, an empty String will be used. 
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `create -p f/Lim n/Joshen`
+* `create -p f/Lim n/Joshen m/lovesick`
+
+Expected Outcome:
+`New patient created: Lim, Joshen; Patient ID: 0001`
 
 ### Listing all persons : `list`
 
@@ -128,19 +129,22 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Delete Patient Record : `delete -p`
 
-Deletes the specified person from the address book.
+Deletes a patient record, including all information about the patient.
 
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `delete -p id/PATIENT_ID`
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete -p id/0001`
+
+Expected Outcome:
+```
+Deleted the following patient from records:
+
+Patient Name: Lim, Joshen
+Patient ID: 0001
+```
 
 ### Clearing all entries : `clear`
 
@@ -169,6 +173,27 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
+
+### View Patient Record : `view -p`
+
+Views an existing patient record.
+
+Format: `view -p id/PATIENT_ID` or `view -p name/FULL_NAME`
+
+Examples:
+- `view -p id/0001`
+- `view -p name/Joshen`
+- `view -p name/Lim Joshen`
+- `view -p name/Joshen Lim`
+
+Expected Outcome:
+```
+Patient Name: Lim, Joshen
+Patient ID: 0001
+Appointment List: 2021-10-05, 2021-09-04
+Medical History: lovesick
+Prescription: panadol
+```
 
 --------------------------------------------------------------------------------------------------------------------
 
