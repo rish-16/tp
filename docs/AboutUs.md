@@ -58,6 +58,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: UI
 
+### Gabriel Goh
+
+<img src="images/gabriel.png" width="200px">
+
+[[github](http://github.com/gycgabriel)]
+[[portfolio](team/gabriel.md)]
+
+* Role: Developer
+* Responsibilities: Scheduling and Tracking
+
 
 ### Yu Xin
 
