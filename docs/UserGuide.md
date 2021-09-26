@@ -87,7 +87,7 @@ Creates a new patient record.
 - `create -p f/Lim n/Joshen`
 - `create -p f/Lim n/Joshen m/lovesick`
 
-**Expected Outcome:** 
+**Expected Outcome:**
 New patient created: Lim, Joshen; Patient ID: 0001
 
 ---
