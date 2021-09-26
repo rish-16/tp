@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Rishabh Anand
 
-<img src="images/rish.png" width="200px">
+<img src="images/rish-16.png" width="200px">
 
 [[github](http://github.com/rish-16)]
 [[portfolio](team/rishabh.md)]
