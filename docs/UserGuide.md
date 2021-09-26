@@ -84,8 +84,8 @@ Creates a new patient record.
 - `MEDICAL_HISTORY` is optional; if `MEDICAL_HISTORY` is not given, an empty text will be used
 
 **Examples:**
-- `create -p f/Lim n/Joshen`
-- `create -p f/Lim n/Joshen m/lovesick`
+- `add -p f/Lim n/Joshen`
+- `add -p f/Lim n/Joshen m/lovesick`
 
 **Expected Outcome:**
 New patient created: Lim, Joshen; Patient ID: 0001
@@ -94,7 +94,7 @@ New patient created: Lim, Joshen; Patient ID: 0001
 
 ### Listing all patients : `list`
 
-Shows a list of all patients in the records system.
+Shows a list of all patients in the record system.
 
 Format: `list`
 
