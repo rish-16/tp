@@ -78,3 +78,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Testing
+
+### Didymus
+<img src="images/didymental.png" width="200px">
+
+[[github](https://github.com/didymental)]
+[[portfolio](team/didymus.md)]
+
+* Role: Developer
+* Responsibilities: Documentation, Deliverables and deadlines
