@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Yu Xin's Project Portfolio Page
+title: Rishabh's Project Portfolio Page
 ---
 
 ### Project: Doc'IT
