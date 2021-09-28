@@ -40,6 +40,33 @@ reduce man-hours in managing paper files, translating this ‘saved’ time into
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Overview of Features
+
+<div markdown="block" class="alert alert-info">
+
+This section provides a brief overview of Doc’It. The intention is for users to gain a better
+understanding of basic functionalities of Doc’It, before diving into specific commands.
+</div>
+
+1. Managing Patient Records
+
+   a. Create a new patient record
+
+   b. View details of patient records
+
+   c. Delete patient records
+
+
+2. Managing Patient Appointments
+
+   a. Create a new appointment
+
+   b. View appointments
+
+   c. Delete appointments
+
+   d. Archive appointments
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
