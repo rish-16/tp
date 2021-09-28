@@ -314,16 +314,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Doc'it` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - List all patients**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list patients.
+2.  Doc'it displays all patients.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+**Use case: UC02 - Add a patient**
+
+**MSS**
+
+1.  User requests to add a patient.
+2.  Doc'it adds the patient with necessary information.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Necessary details of patient are absent (name, NRIC).
+
+     * 1a1. Doc'it shows an error message.
+
+     Use case resumes at step 1.
+      
+* 1b. Patient details conflict with existing patient list.
+
+     * 1b1. Doc'it shows an error message.
+     
+     Use case resumes at step 1.
+     
+
+**Use case: UC03 - Delete a patient**
+
+**MSS**
+
+1.  User requests to list patients.
+2.  Doc'it shows a list of patients.
+3.  User requests to delete a specific patient in the list.
+4.  Doc'it deletes the person.
 
     Use case ends.
 
@@ -335,11 +374,123 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Doc'it shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC04 - View the records of a patient**
+
+**MSS**
+
+1.  User requests to view a patient record.
+2.  Doc'it shows the details of the patient.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The specified patient does not exist.
+
+    * 1a1. Doc'it shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC05 - List all appointments**
+
+**MSS**
+
+1.  User requests to list appointments.
+2.  Doc'it displays all appointments.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+**Use case: UC06 - Add an appointment**
+
+**MSS**
+
+1.  User requests to list patients.
+2.  Doc'it displays all patients.
+3.  User adds an appointment, matching the appointment to the specific patient.
+4.  Doc'it adds the appointment and tags it to the patient.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The date of the appointment AND/OR the specified patient are invalid.
+
+    * 3a1. Doc'it shows an error message.
+
+      Use case resumes at step 3.
+
+**Use case: UC07 - Delete an appointment**
+
+**MSS**
+
+1.  User requests to list appointments.
+2.  Doc'it displays all appointments.
+3.  User requests to delete a specific appointment in the list.
+4.  Doc'it deletes the appointment and removes the appointment tag from the originally tagged patient.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Doc'it shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC08 - Archive an appointment**
+
+**MSS**
+
+1.  User requests to list appointments.
+2.  Doc'it displays all appointments.
+3.  User requests to archive all appointments that are past its date.
+4.  Doc'it archives all appointments that are past its date.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. No appointments are past its date.
+
+  Use case ends.
+
+**Use case: UC08 - Exit program**
+
+**MSS**
+
+1.  User requests to exit the program.
+2.  Doc'it saves and writes all files.
+3.  Doc'it exits and closes.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Doc'it is unable to save file.
+
+    * 2a1. Doc'it shows an error message.
+
+      Use case resumes at step 1.
+
 
 ### Non-Functional Requirements
 
