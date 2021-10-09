@@ -198,17 +198,17 @@ _Details coming soon ..._
 ## Appointments
 A patient in our patient record may have appointments to visit the family clinic. In the appointment view, each appointment on the appointment list indicates an upcoming visit to the clinic. To help small family clinics manage their upcoming appointments for its patients, Doc’It records the following attributes for appointment:
 
-* Patient’s Name: The patient’s name matching in the patient record.
+* Patient’s ID: The patient’s id matching in the patient record.
 * Appointment Date: The date of the appointment
 
 
 ## Listing all appointments: `list`
 Shows a list of all appointments.
 
-Format: `list -a`
+Format: `appt list`
 
 Example:
-* `list -a`  Lists all appointments.
+* `appt list`  Lists all appointments.
 
 Expected Outcome:
 1. Patient Name: Lim, Joshen  Appointment Date: 2021-10-05
@@ -218,11 +218,11 @@ Expected Outcome:
 ## Adding an appointment: `add`
 Adds an appointment for the patient of the specified patient id.
 
-Format: `add -a n/PATIENT_ID d/DATE`
+Format: `appt add n/PATIENT_ID d/DATE`
 
 Examples:
 * `list`  List all patients.
-* `add -a n/1 d/2021-10-05`  Adds appointment to patient of ID 1.
+* `appt add n/1 d/2021-10-05`  Adds appointment to patient of ID 1.
 
 Expected Outcome:  
 New appointment added:  
@@ -232,14 +232,14 @@ Patient Name: Lim, Joshen  Appointment Date: 2021-10-05
 ## Deleting an appointment: `delete`
 Deletes the appointment at the specified index.
 
-Format: `delete -a INDEX`
+Format: `appt delete INDEX`
 * Deletes the appointment at the specified INDEX.
 * The index refers to the index number shown in the displayed appointment list.
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `list -a`  Lists all appointments.
-* `delete -a 1`  Deletes appointment at index 1.
+* `appt list`  Lists all appointments.
+* `appt delete 1`  Deletes appointment at index 1.
 
 Expected Outcome:  
 Appointment deleted:  
@@ -249,14 +249,14 @@ Patient Name: Lim, Joshen  Appointment Date: 2021-10-05
 ## Archiving an appointment:  `archive`
 Archives an old appointment that is already past its date.
 
-Format: `archive -a INDEX`
+Format: `appt archive INDEX`
 * Archives the appointment at the specified INDEX.
 * The index refers to the index number shown in the displayed appointment list.
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `list -a`  Lists all appointments.
-* `archive -a 1`  Archives appointment at index 1.
+* `appt list`  Lists all appointments.
+* `appt archive 1`  Archives appointment at index 1.
 
 Expected Outcome:  
 Old appointment archived:  
@@ -283,10 +283,10 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**List Appointment** | `list -a`
-**Add Appointment** | `add -a n/PATIENT_ID d/DATE` <br> e.g.,  `add -a n/1 d/2021-10-05`
-**Delete Appointment** | `delete -a INDEX` <br> e.g., `delete -a 1`
-**Archive Appointment** | `archive -a INDEX` <br> e.g., `archive -a 1`
+**List Appointment** | `appt list`
+**Add Appointment** | `appt add n/PATIENT_ID d/DATE` <br> e.g.,  `appt add n/1 d/2021-10-05`
+**Delete Appointment** | `appt delete INDEX` <br> e.g., `appt delete 1`
+**Archive Appointment** | `appt archive INDEX` <br> e.g., `appt archive 1`
 
 --------------------------------------------------------------------------------------------------------------------
 
