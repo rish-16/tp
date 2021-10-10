@@ -29,6 +29,7 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern PT_COMMAND_FORMAT = Pattern.compile("pt (?<commandWord>\\S+)(?<arguments>.*)");
     private static final Pattern APPT_COMMAND_FORMAT = Pattern.compile("appt (?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
@@ -39,6 +40,14 @@ public class AddressBookParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
+        // Patient Command Matching
+        final Matcher ptMatcher = PT_COMMAND_FORMAT.matcher(userInput.trim());
+        if (ptMatcher.matches()) {
+            final String commandWord = ptMatcher.group("commandWord");
+            final String arguments = ptMatcher.group("arguments");
+            return parsePatientCommand(commandWord, arguments);
+        }
+
         // Appointment Command Matching
         final Matcher apptMatcher = APPT_COMMAND_FORMAT.matcher(userInput.trim());
         if (apptMatcher.matches()) {
@@ -55,8 +64,39 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-
         return parseBasicCommand(commandWord, arguments);
+    }
+
+    /**
+     * Parses user input of basic command for execution.
+     * @param commandWord command word
+     * @param arguments arguments of command
+     * @return the command based on the user input
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    public Command parsePatientCommand(String commandWord, String arguments) throws ParseException {
+        switch (commandWord) {
+            case AddCommand.COMMAND_WORD:
+                return new AddCommandParser().parse(arguments);
+
+            case EditCommand.COMMAND_WORD:
+                return new EditCommandParser().parse(arguments);
+
+            case DeleteCommand.COMMAND_WORD:
+                return new DeleteCommandParser().parse(arguments);
+
+            case ClearCommand.COMMAND_WORD:
+                return new ClearCommand();
+
+            case FindCommand.COMMAND_WORD:
+                return new FindCommandParser().parse(arguments);
+
+            case ListCommand.COMMAND_WORD:
+                return new ListCommand();
+
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
     }
 
     /**
@@ -68,33 +108,14 @@ public class AddressBookParser {
      */
     public Command parseBasicCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
@@ -108,17 +129,17 @@ public class AddressBookParser {
     public Command parseApptCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
 
-        case AddAppointmentCommand.COMMAND_WORD:
-            return new AddAppointmentCommandParser().parse(arguments);
+            case AddAppointmentCommand.COMMAND_WORD:
+                return new AddAppointmentCommandParser().parse(arguments);
 
-        case DeleteAppointmentCommand.COMMAND_WORD:
-            return new DeleteAppointmentCommandParser().parse(arguments);
+            case DeleteAppointmentCommand.COMMAND_WORD:
+                return new DeleteAppointmentCommandParser().parse(arguments);
 
-        case ListAppointmentsCommand.COMMAND_WORD:
-            return new ListAppointmentsCommand();
+            case ListAppointmentsCommand.COMMAND_WORD:
+                return new ListAppointmentsCommand();
 
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
