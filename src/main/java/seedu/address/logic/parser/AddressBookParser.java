@@ -76,26 +76,20 @@ public class AddressBookParser {
      */
     public Command parsePatientCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
-            case AddCommand.COMMAND_WORD:
-                return new AddCommandParser().parse(arguments);
-
-            case EditCommand.COMMAND_WORD:
-                return new EditCommandParser().parse(arguments);
-
-            case DeleteCommand.COMMAND_WORD:
-                return new DeleteCommandParser().parse(arguments);
-
-            case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
-
-            case FindCommand.COMMAND_WORD:
-                return new FindCommandParser().parse(arguments);
-
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
-
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
