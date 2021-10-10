@@ -108,14 +108,12 @@ public class AddressBookParser {
      */
     public Command parseBasicCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
-
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
-
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
@@ -128,18 +126,14 @@ public class AddressBookParser {
      */
     public Command parseApptCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
-
-            case AddAppointmentCommand.COMMAND_WORD:
-                return new AddAppointmentCommandParser().parse(arguments);
-
-            case DeleteAppointmentCommand.COMMAND_WORD:
-                return new DeleteAppointmentCommandParser().parse(arguments);
-
-            case ListAppointmentsCommand.COMMAND_WORD:
-                return new ListAppointmentsCommand();
-
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        case AddAppointmentCommand.COMMAND_WORD:
+            return new AddAppointmentCommandParser().parse(arguments);
+        case DeleteAppointmentCommand.COMMAND_WORD:
+            return new DeleteAppointmentCommandParser().parse(arguments);
+        case ListAppointmentsCommand.COMMAND_WORD:
+            return new ListAppointmentsCommand();
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 }
