@@ -9,8 +9,8 @@ reduce man-hours in managing paper files, translating this ‘saved’ time into
 
 #### Table of Contents
 
-1. Quick Start 
-2. Overview of Features 
+1. Quick Start
+2. Overview of Features
    1. Patient-related Features
        - Help
        - Add a patient
@@ -64,13 +64,13 @@ understanding of basic functionalities of Doc’It, before diving into specific 
 </div>
 
 1. **Managing Patient Records**
-   1. Create a new patient record 
-   2. View details of patient records 
+   1. Create a new patient record
+   2. View details of patient records
    3. Delete patient records
-2. **Managing Patient Appointments** 
-   1. Create a new appointment 
-   2. View appointments 
-   3. Delete appointments 
+2. **Managing Patient Appointments**
+   1. Create a new appointment
+   2. View appointments
+   3. Delete appointments
    4. Archive appointments
 
 ## Features
@@ -166,7 +166,7 @@ Deletes a patient record, including all information about the patient.
 
 **Format:** `pt delete INDEX`
 
-- Deletes the patient at the specified `INDEX` (one-indexed). 
+- Deletes the patient at the specified `INDEX` (one-indexed).
 
 **Examples:**
 - `pt delete 1`
@@ -220,7 +220,7 @@ Adds an appointment for the patient of the specified patient id.
 
 **Expected Outcome:**
 ```
-New appointment added:  
+New appointment added:
 Patient Name: Joshen Lim |  Appointment Date: 2021-10-05
 ```
 
@@ -238,7 +238,7 @@ Deletes the appointment at the specified index.
 
 **Expected Outcome:**
 ```
-Appointment deleted:  
+Appointment deleted:
 Patient Name: Joshen Lim | Appointment Date: 2021-10-05
 ```
 
@@ -256,7 +256,7 @@ Archives an old appointment that is already past its date.
 
 **Expected Outcome:**
 ```
-Old appointment archived:  
+Old appointment archived:
 Patient Name: Joshen Lim | Appointment Date: 2021-10-05
 ```
 
@@ -311,4 +311,4 @@ Patient Name: Joshen Lim | Appointment Date: 2021-10-05
 | Appointment    | A scheduled consult between a patient and the clinic's doctor.                            |
 | Archive        | Storage for data that is non-urgent, e.g. appointment records that are past their date.   |
 | Patient Record | A record of a patient's details, medical history, medication, appointment list, and name. |
-| Prescription   | The issued medication/treatment for a patient.                                            |
+| Prescription   | The issued medication/treatment for a patient.         

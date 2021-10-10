@@ -500,7 +500,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  Should not require an external installer or launcher.
 5.  Data should be stored locally in an easily-editable text file.
 6.  Should not depend on any cloud-based remote server.
-7.  Data should not be stored in an external Database Management System (DBMS) or data warehouse. 
+7.  Data should not be stored in an external Database Management System (DBMS) or data warehouse.
 
 ### Glossary
 
