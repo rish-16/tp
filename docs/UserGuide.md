@@ -134,6 +134,14 @@ Format: `pt list`
 
 ---
 
+### Clear all records : `clear`
+
+Clears all patient records and information. This is an irreversible operation.
+
+Format: `clear`
+
+---
+
 ### Edit a patient : `pt edit`
 
 Edits the details of a specified patient.
@@ -263,11 +271,9 @@ Patient Name: Joshen Lim | Appointment Date: 2021-10-05
 ---
 
 ## Upcoming commands
-
-1. Clearing all entries : `[coming in v1.3]`
-2. Saving the data `[coming in v1.3]`
-3. Editing the data file `[coming in v1.3]`
-4. Archiving data files `[coming in v1.3]`
+1. Saving the data `[coming in v1.3]`
+2. Editing the data file `[coming in v1.3]`
+3. Archiving data files `[coming in v1.3]`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -284,6 +290,7 @@ Patient Name: Joshen Lim | Appointment Date: 2021-10-05
 | Command     | Format        |
 |-------------|---------------|
 | User Manual | `help`        |
+| Clear       | `cleat`       |
 | Exit        | `exit`        |
 
 ### Patient-related Commands

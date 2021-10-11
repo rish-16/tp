@@ -82,8 +82,6 @@ public class AddressBookParser {
             return new EditCommandParser().parse(arguments);
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
@@ -104,6 +102,8 @@ public class AddressBookParser {
         switch (commandWord) {
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
         default:
