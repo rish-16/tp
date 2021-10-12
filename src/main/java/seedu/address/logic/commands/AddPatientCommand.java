@@ -15,9 +15,9 @@ import seedu.address.model.person.Patient;
 /**
  * Adds a person to the address book.
  */
-public class AddCommand extends Command {
+public class AddPatientCommand extends Command {
 
-    public static final String COMMAND_WORD = "pt add";
+    public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney"
+            + PREFIX_TAG + "owesMoney "
             + PREFIX_MEDICAL + "lovesick";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
@@ -43,7 +43,7 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Patient patient) {
+    public AddPatientCommand(Patient patient) {
         requireNonNull(patient);
         toAdd = patient;
     }
@@ -63,7 +63,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof AddPatientCommand // instanceof handles nulls
+                && toAdd.equals(((AddPatientCommand) other).toAdd));
     }
 }

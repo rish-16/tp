@@ -7,17 +7,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPatientCommand;
+import seedu.address.logic.commands.ArchiveAppointmentCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.DeletePatientCommand;
+import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAppointmentsCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -76,16 +77,16 @@ public class AddressBookParser {
      */
     public Command parsePatientCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
-        case AddCommand.COMMAND_WORD:
+        case AddPatientCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
-        case EditCommand.COMMAND_WORD:
+        case EditPatientCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
-        case DeleteCommand.COMMAND_WORD:
+        case DeletePatientCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-        case FindCommand.COMMAND_WORD:
+        case FindPatientCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListPatientCommand.COMMAND_WORD:
+            return new ListPatientCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -124,6 +125,8 @@ public class AddressBookParser {
             return new AddAppointmentCommandParser().parse(arguments);
         case DeleteAppointmentCommand.COMMAND_WORD:
             return new DeleteAppointmentCommandParser().parse(arguments);
+        case ArchiveAppointmentCommand.COMMAND_WORD:
+            return new ArchiveAppointmentCommandParser().parse(arguments);
         case ListAppointmentsCommand.COMMAND_WORD:
             return new ListAppointmentsCommand();
         default:

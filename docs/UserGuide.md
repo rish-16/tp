@@ -5,29 +5,29 @@ title: User Guide
 
 Doc’it provides a centralised platform for authorised staff from small family clinics to view, update, and onboard
 patient records, solving the inefficient paper records and files used today. With Doc’it, small family clinics can
-reduce man-hours in managing paper files, translating this ‘saved’ time into better frontline care services.
+reduce man-hours in managing paper files, translating this ‘saved’ time into better front-line care services.
 
 #### Table of Contents
 
 1. Quick Start
 2. Overview of Features
-   1. Patient-related Features
-       - Help
-       - Add a patient
-       - List all patients
-       - Edit a patient
-       - Delete a patient
-       - Exit the program
-   2. Appointment-related Features
-       - List all appointments
-       - Add an appointment
-       - Delete an appointment
-       - Archive an appointment
-   3. Upcoming Commands
-       - Clear all entries
-       - Saving all data
-       - Editing data files
-       - Archiving data files
+    1. Patient-related Features
+        - Help
+        - Add a patient
+        - List all patients
+        - Edit a patient
+        - Delete a patient
+        - Exit the program
+    2. Appointment-related Features
+        - List all appointments
+        - Add an appointment
+        - Delete an appointment
+        - Archive an appointment
+    3. Upcoming Commands
+        - Clear all entries
+        - Saving all data
+        - Editing data files
+        - Archiving data files
 3. FAQ
 4. Command Summary
 5. Glossary
