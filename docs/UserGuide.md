@@ -318,4 +318,4 @@ Patient Name: Joshen Lim | Appointment Date: 2021-10-05
 | Appointment    | A scheduled consult between a patient and the clinic's doctor.                            |
 | Archive        | Storage for data that is non-urgent, e.g. appointment records that are past their date.   |
 | Patient Record | A record of a patient's details, medical history, medication, appointment list, and name. |
-| Prescription   | The issued medication/treatment for a patient.         
+| Prescription   | The issued medication/treatment for a patient.
