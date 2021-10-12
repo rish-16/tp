@@ -48,7 +48,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeletePatientCommand command = (DeletePatientCommand) parser.parseCommand("pt " +
+        DeletePatientCommand command = (DeletePatientCommand) parser.parseCommand(
                 DeletePatientCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeletePatientCommand(INDEX_FIRST_PERSON), command);
     }
@@ -57,7 +57,7 @@ public class AddressBookParserTest {
     public void parseCommand_edit() throws Exception {
         Patient patient = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(patient).build();
-        EditPatientCommand command = (EditPatientCommand) parser.parseCommand("pt " + EditPatientCommand.COMMAND_WORD + " "
+        EditPatientCommand command = (EditPatientCommand) parser.parseCommand(EditPatientCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditPatientCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
@@ -71,7 +71,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindPatientCommand command = (FindPatientCommand) parser.parseCommand("pt " +
+        FindPatientCommand command = (FindPatientCommand) parser.parseCommand(
                 FindPatientCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindPatientCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
@@ -84,8 +84,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand("pt " + ListPatientCommand.COMMAND_WORD) instanceof ListPatientCommand);
-        assertTrue(parser.parseCommand("pt " + ListPatientCommand.COMMAND_WORD + " 3") instanceof ListPatientCommand);
+        assertTrue(parser.parseCommand(ListPatientCommand.COMMAND_WORD) instanceof ListPatientCommand);
+        assertTrue(parser.parseCommand(ListPatientCommand.COMMAND_WORD + " 3") instanceof ListPatientCommand);
     }
 
     @Test

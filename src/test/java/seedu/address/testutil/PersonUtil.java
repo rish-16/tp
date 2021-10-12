@@ -23,7 +23,7 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Patient patient) {
-        return "pt " + AddPatientCommand.COMMAND_WORD + " " + getPersonDetails(patient);
+        return AddPatientCommand.COMMAND_WORD + " " + getPersonDetails(patient);
     }
 
     /**

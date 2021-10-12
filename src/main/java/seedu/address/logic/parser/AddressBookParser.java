@@ -30,7 +30,6 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Pattern PT_COMMAND_FORMAT = Pattern.compile("pt (?<commandWord>\\S+)(?<arguments>.*)");
     private static final Pattern APPT_COMMAND_FORMAT = Pattern.compile("appt (?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
@@ -41,14 +40,6 @@ public class AddressBookParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-        // Patient Command Matching
-        final Matcher ptMatcher = PT_COMMAND_FORMAT.matcher(userInput.trim());
-        if (ptMatcher.matches()) {
-            final String commandWord = ptMatcher.group("commandWord");
-            final String arguments = ptMatcher.group("arguments");
-            return parsePatientCommand(commandWord, arguments);
-        }
-
         // Appointment Command Matching
         final Matcher apptMatcher = APPT_COMMAND_FORMAT.matcher(userInput.trim());
         if (apptMatcher.matches()) {
@@ -75,7 +66,7 @@ public class AddressBookParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parsePatientCommand(String commandWord, String arguments) throws ParseException {
+    public Command parseBasicCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
         case AddPatientCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
@@ -87,20 +78,6 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
         case ListPatientCommand.COMMAND_WORD:
             return new ListPatientCommand();
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-        }
-    }
-
-    /**
-     * Parses user input of basic command for execution.
-     * @param commandWord command word
-     * @param arguments arguments of command
-     * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
-     */
-    public Command parseBasicCommand(String commandWord, String arguments) throws ParseException {
-        switch (commandWord) {
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case ClearCommand.COMMAND_WORD:
