@@ -25,7 +25,9 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.AppointmentBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonAppointmentBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -59,7 +61,9 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        AppointmentBookStorage appointmentBookStorage =
+            new JsonAppointmentBookStorage(userPrefs.getAppointmentBookFilePath());
+        storage = new StorageManager(addressBookStorage, appointmentBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -77,6 +81,7 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyAppointmentBook> appointmentBookOptional;
         ReadOnlyAddressBook initialData;
         ReadOnlyAppointmentBook initialAppointmentData;
         try {
@@ -93,8 +98,20 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        // TODO: Implement Storage and Sample data for Appointments
-        initialAppointmentData = new AppointmentBook();
+        // Storage and Sample data for Appointments
+        try {
+            appointmentBookOptional = storage.readAppointmentBook();
+            if (!appointmentBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample AppointmentBook");
+            }
+            initialAppointmentData = appointmentBookOptional.orElseGet(SampleDataUtil::getSampleAppointmentBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty AppointmentBook");
+            initialAppointmentData = new AppointmentBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty AppointmentBook");
+            initialAppointmentData = new AppointmentBook();
+        }
 
         return new ModelManager(initialData, initialAppointmentData, userPrefs);
     }
