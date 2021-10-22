@@ -11,7 +11,7 @@ import seedu.address.model.appointment.Appointment;
 /**
  * Adds an appointment to the appointment book.
  */
-public class AddAppointmentCommand extends Command {
+public class AddAppointmentCommand extends AppointmentCommand {
 
     public static final String COMMAND_WORD = "add";
 
