@@ -8,6 +8,7 @@ import seedu.address.model.Entry;
 import seedu.address.model.EntryList;
 
 public class MedicalHistory {
+    public static final MedicalHistory EMPTY_MEDICAL_HISTORY = new MedicalHistory(null);
     private EntryList<Entry<MedicalEntry>> entryList = new EntryList<>();
 
     /**
@@ -92,6 +93,16 @@ public class MedicalHistory {
     }
 
     /**
+     * Appends medical entries of another {@code MedicalHistory} object to this {@code MedicalHistory} object.
+     * @param mh {@code MedicalHistory} object that is to be added to
+     */
+    public void append(MedicalHistory mh) {
+        for (int i = 0; i < mh.size(); i++) {
+            this.entryList.add(mh.entryList.get(i));
+        }
+    }
+
+    /**
      * Returns the count of medical entries within the medical history.
      * @return count of medical entries.
      */
@@ -122,17 +133,26 @@ public class MedicalHistory {
                 return false;
             }
 
-            int len = this.entryList.size();
+            return checkIsEqual(m.entryList);
 
-            for (int i = 0; i < len; i++) {
-                if (!this.entryList.get(i).equals(m.entryList.get(i))) {
-                    return false;
-                }
-            }
-
-            return true;
         }
         return false;
+    }
+
+    private boolean checkIsEqual(EntryList<Entry<MedicalEntry>> otherList) {
+        int len = this.entryList.size();
+
+        for (int i = 0; i < len; i++) {
+            if (!this.entryList.get(i).equals(otherList.get(i))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean isEmpty() {
+        return this.equals(EMPTY_MEDICAL_HISTORY);
     }
 
 }

@@ -129,7 +129,7 @@ public class ParserUtil {
      */
     public static MedicalHistory parseMedicalHistory(String medicalHistory) {
         Object[] detailedEntries = breakMhIntoEntries(medicalHistory);
-        MedicalHistory toParseMh = new MedicalHistory("");
+        MedicalHistory toParseMh = new MedicalHistory(null);
 
         if (detailedEntries.length > 0) { // has at least one medical entry
             toParseMh.delete(0);
@@ -139,9 +139,17 @@ public class ParserUtil {
                 String[] entry = (String[]) detailedEntries[i];
 
                 if (entry.length == 1) { // no date
-                    toParseMh.add(entry[0].trim());
-                } else { // has date
-                    toParseMh.add(entry[1].trim(), entry[0].trim());
+                    if (!isValidMh(entry[0])) {
+                        toParseMh = MedicalHistory.EMPTY_MEDICAL_HISTORY;
+                    } else {
+                        toParseMh.add(entry[0].trim());
+                    }
+                } else {
+                    if (!isValidMh(entry[1])) {
+                        toParseMh = MedicalHistory.EMPTY_MEDICAL_HISTORY;
+                    } else {
+                        toParseMh.add(entry[1].trim(), entry[0].trim());
+                    }
                 }
             }
         }
@@ -149,9 +157,39 @@ public class ParserUtil {
         return toParseMh;
     }
 
+    /**
+     * Overloads method to ensure that medical history can be an optional.
+     * @param medicalEntries an empty Arraylist.
+     * @return an empty medical history.
+     */
+    public static MedicalHistory parseMedicalHistory(Collection<String> medicalEntries) {
+        requireNonNull(medicalEntries);
+
+        MedicalHistory toParseMh = new MedicalHistory("");
+        toParseMh.delete(0);
+
+        for (String medicalEntry : medicalEntries) {
+            MedicalHistory mh = parseMedicalHistory(medicalEntry);
+            if (mh.equals(MedicalHistory.EMPTY_MEDICAL_HISTORY)) {
+                toParseMh = MedicalHistory.EMPTY_MEDICAL_HISTORY;
+                break;
+            } else {
+                toParseMh.append(parseMedicalHistory(medicalEntry));
+            }
+        }
+
+        System.out.println(toParseMh.equals(MedicalHistory.EMPTY_MEDICAL_HISTORY));
+
+        return toParseMh.size() == 0 ? MedicalHistory.EMPTY_MEDICAL_HISTORY : toParseMh;
+    }
+
     private static Object[] breakMhIntoEntries(String medicalHistory) {
         String[] entries = medicalHistory.split(", ");
         Object[] entriesDateDesc = Arrays.stream(entries).map(x -> x.split("\\| ")).toArray();
         return entriesDateDesc;
+    }
+
+    private static boolean isValidMh(String entry) {
+        return !(entry.length() == 0 || entry == " " || entry == null);
     }
 }

@@ -113,7 +113,7 @@ class JsonAdaptedPerson {
 
         Object[] detailedEntries = breakIntoEntries(medicalHistory);
 
-        final MedicalHistory modelMedicalHistory = new MedicalHistory("");
+        MedicalHistory modelMedicalHistory = new MedicalHistory("");
 
         if (detailedEntries.length > 0) { // has at least one medical entry
             modelMedicalHistory.delete(0);
@@ -123,9 +123,17 @@ class JsonAdaptedPerson {
                 String[] entry = (String[]) detailedEntries[i];
 
                 if (entry.length == 1) { // no date
-                    modelMedicalHistory.add(entry[0].trim());
+                    if (!isValidMh(entry[0])) {
+                        modelMedicalHistory = MedicalHistory.EMPTY_MEDICAL_HISTORY;
+                    } else {
+                        modelMedicalHistory.add(entry[0].trim());
+                    }
                 } else {
-                    modelMedicalHistory.add(entry[1].trim(), entry[0].trim());
+                    if (!isValidMh(entry[1])) {
+                        modelMedicalHistory = MedicalHistory.EMPTY_MEDICAL_HISTORY;
+                    } else {
+                        modelMedicalHistory.add(entry[1].trim(), entry[0].trim());
+                    }
                 }
             }
         }
@@ -133,10 +141,14 @@ class JsonAdaptedPerson {
         return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMedicalHistory);
     }
 
-    public static Object[] breakIntoEntries(String medicalHistory) {
+    private static Object[] breakIntoEntries(String medicalHistory) {
         String[] entries = medicalHistory.split(", ");
         Object[] entriesDateDesc = Arrays.stream(entries).map(x -> x.split("\\| ")).toArray();
         return entriesDateDesc;
+    }
+
+    private static boolean isValidMh(String entry) {
+        return !(entry.length() == 0 || entry == " " || entry == null);
     }
 
 }
