@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -123,7 +124,34 @@ public class ParserUtil {
         return tagSet;
     }
 
-    public static MedicalHistory parseMedicalHistory(String medicalHistory) throws ParseException {
-        return new MedicalHistory(medicalHistory);
+    /**
+     * Parses {@code String medicalHistory} into a {@Code MedicalHistory}.
+     */
+    public static MedicalHistory parseMedicalHistory(String medicalHistory) {
+        Object[] detailedEntries = breakMhIntoEntries(medicalHistory);
+        MedicalHistory toParseMh = new MedicalHistory("");
+
+        if (detailedEntries.length > 0) { // has at least one medical entry
+            toParseMh.delete(0);
+
+            for (int i = 0; i < detailedEntries.length; i++) {
+                @SuppressWarnings("unchecked")
+                String[] entry = (String[]) detailedEntries[i];
+
+                if (entry.length == 1) { // no date
+                    toParseMh.add(entry[0].trim());
+                } else { // has date
+                    toParseMh.add(entry[1].trim(), entry[0].trim());
+                }
+            }
+        }
+
+        return toParseMh;
+    }
+
+    private static Object[] breakMhIntoEntries(String medicalHistory) {
+        String[] entries = medicalHistory.split(", ");
+        Object[] entriesDateDesc = Arrays.stream(entries).map(x -> x.split("\\| ")).toArray();
+        return entriesDateDesc;
     }
 }
