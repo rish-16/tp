@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -23,6 +26,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final DateTimeFormatter DEFAULT_DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm");
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -122,6 +126,21 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String datetime} of given format into a {@code LocalDateTime}.
+     */
+    public static LocalDateTime parseDateTime(String datetime, DateTimeFormatter formatter) throws ParseException {
+        requireNonNull(datetime);
+        if (formatter == null) {
+            formatter = DEFAULT_DATE_TIME_FORMATTER;
+        }
+        try {
+            return LocalDateTime.parse(datetime, formatter);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(datetime);
+        }
     }
 
     /**
