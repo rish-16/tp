@@ -26,16 +26,16 @@ public class AddAppointmentCommandParser implements AppointmentParser<AddAppoint
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddAppointmentCommand parseAppointmentCommand(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATETIME);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_DATETIME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DATETIME) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_INDEX, PREFIX_DATETIME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE));
         }
 
         Index patientIndex;
         try {
-            patientIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_NAME).get());
+            patientIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
         } catch (ParseException pe) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE), pe);
@@ -51,7 +51,7 @@ public class AddAppointmentCommandParser implements AppointmentParser<AddAppoint
                 AddAppointmentCommand.MESSAGE_USAGE), pe);
         }
 
-        return new AddAppointmentCommand(patientIndex, localDateTime);
+        return new AddAppointmentCommand(PREFIX_INDEX, localDateTime);
     }
 
     /**

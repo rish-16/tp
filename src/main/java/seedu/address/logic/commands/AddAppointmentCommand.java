@@ -23,7 +23,7 @@ public class AddAppointmentCommand extends AppointmentCommand {
 
     public static final String MESSAGE_USAGE =
         "appt "
-        + COMMAND_WORD + ": Adds an appointment to the appointment book. " + "Parameters: " + PREFIX_NAME + "INDEX "
+        + COMMAND_WORD + ": Adds an appointment to the appointment book. " + "Parameters: " + PREFIX_INDEX + "INDEX "
             + PREFIX_DATETIME + "DATETIME \n" + "Example: appt " + COMMAND_WORD + " " + PREFIX_NAME + "1 "
             + PREFIX_DATETIME + "2021-12-31 1600";
 
