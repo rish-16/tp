@@ -14,7 +14,8 @@ public class AppointmentCommandParserTestUtil {
      * Asserts that the parsing of {@code userInput} by {@code parser} is successful and the command created
      * equals to {@code expectedCommand}.
      */
-    public static void assertParseSuccess(AppointmentParser parser, String userInput, AppointmentCommand expectedCommand) {
+    public static void assertParseSuccess(
+            AppointmentParser parser, String userInput, AppointmentCommand expectedCommand) {
         try {
             AppointmentCommand command = parser.parseAppointmentCommand(userInput);
             assertEquals(expectedCommand, command);

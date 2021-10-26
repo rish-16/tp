@@ -18,13 +18,11 @@ import seedu.address.model.tag.Tag;
  * A utility class for Person.
  */
 public class PersonUtil {
-    public static final String PT_PREFIX = "pt ";
-
     /**
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Patient patient) {
-        return PT_PREFIX + AddPatientCommand.COMMAND_WORD + " " + getPersonDetails(patient);
+        return AddPatientCommand.COMMAND_WORD + " " + getPersonDetails(patient);
     }
 
     /**

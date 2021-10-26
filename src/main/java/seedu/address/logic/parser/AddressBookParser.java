@@ -18,19 +18,13 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Pattern PTNT_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Pattern APPT_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(ab) (?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern PTNT_COMMAND_FORMAT = Pattern.compile("(pt) (?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern APPT_COMMAND_FORMAT = Pattern.compile("(apmt) (?<commandWord>\\S+)(?<arguments>.*)");
 
-    private final PatientBookParser patientParser;
-    private final AppointmentBookParser apptParser;
-    private final BasicAddressBookParser basicParser;
-
-    public AddressBookParser() {
-        this.patientParser = new PatientBookParser();
-        this.apptParser = new AppointmentBookParser();
-        this.basicParser = new BasicAddressBookParser();
-    }
+    private final PatientBookParser patientParser = new PatientBookParser();
+    private final AppointmentBookParser apptParser = new AppointmentBookParser();
+    private final BasicAddressBookParser basicParser = new BasicAddressBookParser();
 
     /**
      * Parses user input into command for execution.
@@ -45,11 +39,16 @@ public class AddressBookParser {
         final Matcher basicMatcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         final Matcher apptMatcher = APPT_COMMAND_FORMAT.matcher(userInput.trim());
 
+        // empty inputs
+        if (userInput.equals("")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
+
         if (basicMatcher.matches()) {
             // Basic Command Matching
             final String commandWord = basicMatcher.group("commandWord");
-            final String arguments = basicMatcher.group("arguments");
-            return basicParser.parseBasicCommand(commandWord, arguments);
+            final String arguments = basicMatcher.group("arguments"); // ignore any arguments
+            return basicParser.parseBasicCommand(commandWord);
         } else if (apptMatcher.matches()) {
             // Appointment Command Matching
             final String commandWord = apptMatcher.group("commandWord");
@@ -61,7 +60,7 @@ public class AddressBookParser {
             final String arguments = patientMatcher.group("arguments");
             return patientParser.parsePatientCommand(commandWord, arguments);
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_UNKNOWN_COMMAND, HelpCommand.MESSAGE_USAGE));
         }
     }
 }

@@ -1,14 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
-import seedu.address.logic.commands.ArchiveAppointmentCommand;
 import seedu.address.logic.commands.AppointmentCommand;
+import seedu.address.logic.commands.ArchiveAppointmentCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.ListAppointmentsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -26,16 +22,16 @@ public class AppointmentBookParser {
      */
     public AppointmentCommand parseAppointmentCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
-            case AddAppointmentCommand.COMMAND_WORD:
-                return new AddAppointmentCommandParser().parseAppointmentCommand(arguments);
-            case DeleteAppointmentCommand.COMMAND_WORD:
-                return new DeleteAppointmentCommandParser().parseAppointmentCommand(arguments);
-            case ArchiveAppointmentCommand.COMMAND_WORD:
-                return new ArchiveAppointmentCommandParser().parseAppointmentCommand(arguments);
-            case ListAppointmentsCommand.COMMAND_WORD:
-                return new ListAppointmentsCommand();
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        case AddAppointmentCommand.COMMAND_WORD:
+            return new AddAppointmentCommandParser().parseAppointmentCommand(arguments);
+        case DeleteAppointmentCommand.COMMAND_WORD:
+            return new DeleteAppointmentCommandParser().parseAppointmentCommand(arguments);
+        case ArchiveAppointmentCommand.COMMAND_WORD:
+            return new ArchiveAppointmentCommandParser().parseAppointmentCommand(arguments);
+        case ListAppointmentsCommand.COMMAND_WORD:
+            return new ListAppointmentsCommand();
+        default:
+            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
         }
     }
 }

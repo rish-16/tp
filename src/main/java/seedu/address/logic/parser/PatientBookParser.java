@@ -1,17 +1,13 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddPatientCommand;
-import seedu.address.logic.commands.PatientCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
 import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.commands.ListPatientCommand;
+import seedu.address.logic.commands.PatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -28,18 +24,18 @@ public class PatientBookParser {
      */
     public PatientCommand parsePatientCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
-            case AddPatientCommand.COMMAND_WORD:
-                return new AddPatientCommandParser().parsePatientCommand(arguments);
-            case EditPatientCommand.COMMAND_WORD:
-                return new EditPatientCommandParser().parsePatientCommand(arguments);
-            case DeletePatientCommand.COMMAND_WORD:
-                return new DeletePatientCommandParser().parsePatientCommand(arguments);
-            case FindPatientCommand.COMMAND_WORD:
-                return new FindPatientCommandParser().parsePatientCommand(arguments);
-            case ListPatientCommand.COMMAND_WORD:
-                return new ListPatientCommand();
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        case AddPatientCommand.COMMAND_WORD:
+            return new AddPatientCommandParser().parsePatientCommand(arguments);
+        case EditPatientCommand.COMMAND_WORD:
+            return new EditPatientCommandParser().parsePatientCommand(arguments);
+        case DeletePatientCommand.COMMAND_WORD:
+            return new DeletePatientCommandParser().parsePatientCommand(arguments);
+        case FindPatientCommand.COMMAND_WORD:
+            return new FindPatientCommandParser().parsePatientCommand(arguments);
+        case ListPatientCommand.COMMAND_WORD:
+            return new ListPatientCommand();
+        default:
+            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
         }
     }
 }
