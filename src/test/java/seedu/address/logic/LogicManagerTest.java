@@ -69,13 +69,13 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        String deleteCommand = "pt delete 1000";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListPatientCommand.COMMAND_WORD;
+        String listCommand = "pt " + ListPatientCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListPatientCommand.MESSAGE_SUCCESS, model);
     }
 

@@ -13,7 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new AddAppointmentCommand object
  */
-public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
+public class AddAppointmentCommandParser implements AppointmentParser<AddAppointmentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddAppointmentCommand and returns an
@@ -21,7 +21,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddAppointmentCommand parse(String args) throws ParseException {
+    public AddAppointmentCommand parseAppointmentCommand(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATETIME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DATETIME) || !argMultimap.getPreamble().isEmpty()) {
