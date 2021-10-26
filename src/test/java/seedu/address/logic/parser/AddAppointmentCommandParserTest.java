@@ -17,11 +17,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_ID_0;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_ID_DESC_0;
 import static seedu.address.logic.parser.AppointmentCommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.AppointmentCommandParserTestUtil.assertParseSuccess;
-<<<<<<< HEAD
-=======
 
 import java.time.LocalDateTime;
->>>>>>> 4f8466ea7b0cb4ed58caf546054a31234cc756d4
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

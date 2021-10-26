@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -51,7 +51,7 @@ public class AddAppointmentCommandParser implements AppointmentParser<AddAppoint
                 AddAppointmentCommand.MESSAGE_USAGE), pe);
         }
 
-        return new AddAppointmentCommand(PREFIX_INDEX, localDateTime);
+        return new AddAppointmentCommand(patientIndex, localDateTime);
     }
 
     /**
