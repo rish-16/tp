@@ -17,6 +17,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_ID_0;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_ID_DESC_0;
 import static seedu.address.logic.parser.AppointmentCommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.AppointmentCommandParserTestUtil.assertParseSuccess;
+<<<<<<< HEAD
+=======
+
+import java.time.LocalDateTime;
+>>>>>>> 4f8466ea7b0cb4ed58caf546054a31234cc756d4
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -35,19 +40,21 @@ public class AddAppointmentCommandParserTest {
     @Test
     @Disabled("Currently, parser do not discard unused preamble")
     public void parse_allFieldsPresent_success() {
-        Appointment expectedAppointment = new Appointment(SampleDataUtil.getSamplePersons()[0], "2020-12-21 1600");
+        LocalDateTime expectedDateTime = LocalDateTime.of(
+            2021, 12, 21, 16, 0);
+        Appointment expectedAppointment = new Appointment(SampleDataUtil.getSamplePersons()[0], expectedDateTime);
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_PATIENT_ID_0 + VALID_APPOINTMENT_DATE_TIME,
-                new AddAppointmentCommand(Index.fromOneBased(1), ""));
+                new AddAppointmentCommand(Index.fromOneBased(1), expectedDateTime));
 
         // fully correct entry
         assertParseSuccess(parser, VALID_PATIENT_ID_0 + VALID_APPOINTMENT_DATE_TIME,
-                new AddAppointmentCommand(Index.fromOneBased(1), ""));
+                new AddAppointmentCommand(Index.fromOneBased(1), expectedDateTime));
 
         // fully correct entry with irrelevant ending whitespace only preamble
         assertParseSuccess(parser, VALID_PATIENT_ID_0 + VALID_APPOINTMENT_DATE_TIME + PREAMBLE_WHITESPACE,
-                new AddAppointmentCommand(Index.fromOneBased(1), ""));
+                new AddAppointmentCommand(Index.fromOneBased(1), expectedDateTime));
     }
 
 
