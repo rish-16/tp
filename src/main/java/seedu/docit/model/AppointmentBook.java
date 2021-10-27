@@ -153,4 +153,5 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
     @Override public int hashCode() {
         return appointments.hashCode();
     }
+
 }

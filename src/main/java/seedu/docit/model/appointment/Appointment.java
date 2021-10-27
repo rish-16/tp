@@ -22,6 +22,8 @@ import seedu.docit.model.prescription.exceptions.MedicineNotFoundException;
 public class Appointment {
 
     public static final DateTimeFormatter UI_DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d MMM yyyy HHmm");
+    public static final DateTimeFormatter UI_DATE_FORMATTER = DateTimeFormatter.ofPattern("d MMM yyyy");
+    public static final DateTimeFormatter UI_TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
     public static final DateTimeFormatter INPUT_DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-M-d HHmm");
 
     // Identity fields
@@ -53,6 +55,10 @@ public class Appointment {
         return prescriptions.toString();
     }
 
+    public ObservableList<Prescription> getPrescriptionList() {
+        return prescriptions.getPrescriptions();
+    }
+
     public void addPrescription(Prescription prescription) throws DuplicatePrescriptionException {
         this.prescriptions.add(prescription);
     }
@@ -73,6 +79,14 @@ public class Appointment {
 
     public String getFormattedDatetimeString() {
         return getDatetime().format(UI_DATE_TIME_FORMATTER);
+    }
+
+    public String getFormattedDateString() {
+        return getDatetime().format(UI_DATE_FORMATTER);
+    }
+
+    public String getFormattedTimeString() {
+        return getDatetime().format(UI_TIME_FORMATTER);
     }
 
     public String getInputFormattedDatetimeString() {

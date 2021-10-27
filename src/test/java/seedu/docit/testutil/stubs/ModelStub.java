@@ -12,7 +12,6 @@ import seedu.docit.model.ReadOnlyUserPrefs;
 import seedu.docit.model.appointment.Appointment;
 import seedu.docit.model.patient.Patient;
 
-
 /**
  * A default model stub that have all of the methods failing.
  */
