@@ -2,7 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import seedu.address.logic.commands.AddMedicalEntryCommand;
 import seedu.address.logic.commands.AddPatientCommand;
+import seedu.address.logic.commands.DeleteMedicalEntryCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
 import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.FindPatientCommand;
@@ -34,6 +36,10 @@ public class PatientBookParser {
             return new FindPatientCommandParser().parsePatientCommand(arguments);
         case ListPatientCommand.COMMAND_WORD:
             return new ListPatientCommand();
+        case AddMedicalEntryCommand.COMMAND_WORD:
+            return new AddMedicalEntryCommandParser().parsePatientCommand(arguments);
+        case DeleteMedicalEntryCommand.COMMAND_WORD:
+            return new DeleteMedicalEntryCommandParser().parsePatientCommand(arguments);
         default:
             throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
         }
