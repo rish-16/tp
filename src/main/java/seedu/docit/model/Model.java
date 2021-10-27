@@ -153,6 +153,11 @@ public interface Model {
      */
     void setAppointment(Appointment target, Appointment editedAppointment);
 
+    /**
+     * Sorts appointments in order of whether its today, followed by dateTime, and patient name.
+     */
+    void sortAppointments();
+
     String getAppointments();
 
     String getArchivedAppointments();
@@ -173,4 +178,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+
+    /**
+     * Archives all appointments 1-day past their scheduled date.
+     */
+    void archivePastAppointments();
 }
