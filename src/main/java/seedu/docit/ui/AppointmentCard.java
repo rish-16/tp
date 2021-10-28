@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.docit.model.appointment.Appointment;
 import seedu.docit.model.patient.Patient;
 
@@ -42,6 +43,10 @@ public class AppointmentCard extends UiPart<Region> {
     @FXML
     private Label time;
     @FXML
+    private Label prescription;
+    @FXML
+    private VBox prescriptionContainer;
+    @FXML
     private FlowPane tags;
     @FXML
     private FlowPane prescriptions;
@@ -53,6 +58,7 @@ public class AppointmentCard extends UiPart<Region> {
      */
     public AppointmentCard(Appointment appointment, int displayedIndex) {
         super(FXML);
+
         this.appointment = appointment;
         Patient patient = appointment.getPatient();
         id.setText(displayedIndex + ". ");
@@ -63,9 +69,16 @@ public class AppointmentCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         date.setText("\uD83D\uDCC5\t" + appointment.getFormattedDateString());
         time.setText("\u0000\u23f0\t" + appointment.getFormattedTimeString());
+
+        if (appointment.getPrescriptions().size() == 0) {
+            prescriptionContainer.setVisible(false);
+            prescription.setVisible(false);
+        }
+
         appointment.getPrescriptions().stream()
                .sorted(Comparator.comparing(presctn -> presctn.getMedicine()))
                .forEach(presctn -> prescriptions.getChildren().add(new Label(presctn.toUiFormat())));
+
         isToday.setVisible(appointment.isToday());
     }
 

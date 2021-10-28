@@ -168,6 +168,12 @@ public interface Model {
 
     String getArchivedAppointments();
 
+    public void addPrescription(Appointment target, Prescription p);
+
+    public void deletePrescription(Appointment target, String medicine);
+
+    public void editPrescription(int i, Prescription p);
+
     /**
      * Returns an unmodifiable view of the filtered appointment list
      */
