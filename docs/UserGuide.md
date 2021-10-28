@@ -73,12 +73,12 @@ understanding of basic functionalities of `Doc’It`, before diving into specifi
    3. Delete patient record
    4. Edit patient record
 3. **Managing Patient Appointments**
-      1. Create a new appointment
-      2. View appointment
-      3. Delete appointment
-      4. Archive appointment
-      5. List appointments
-      6. Sort appointments (ascending)
+    1. Create a new appointment
+    2. View appointment
+    3. Delete appointment
+    4. Archive appointment
+    5. List appointments
+    6. Sort appointments (in order of urgency)
 
 ## Features
 
