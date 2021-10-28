@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-Doc’it provides a centralised platform for authorised staff from small family clinics to view, update, and onboard
-patient records, solving the inefficient paper records and files used today. With Doc’it, small family clinics can
+`Doc’it` provides a centralised platform for authorised staff from small family clinics to view, update, and onboard
+patient records, solving the inefficient paper records and files used today. With `Doc’it`, small family clinics can
 reduce man-hours in managing paper files, translating this ‘saved’ time into better front-line care services.
 
 #### Table of Contents
@@ -51,7 +51,7 @@ reduce man-hours in managing paper files, translating this ‘saved’ time into
 
 * **`doc exit`** : Exits the app.
 
-1. Refer to the **Features** section below for details of each command.
+6. Refer to the **Features** section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -59,8 +59,8 @@ reduce man-hours in managing paper files, translating this ‘saved’ time into
 
 <div markdown="block" class="alert alert-info">
 
-This section provides a brief overview of Doc’It. The intention is for users to gain a better
-understanding of basic functionalities of Doc’It, before diving into specific commands.
+This section provides a brief overview of `Doc’It`. The intention is for users to gain a better
+understanding of basic functionalities of `Doc’It`, before diving into specific commands.
 </div>
 
 1. **General Commands**
@@ -71,12 +71,14 @@ understanding of basic functionalities of Doc’It, before diving into specific 
    1. Create a new patient record
    2. View details of patient record
    3. Delete patient record
-   4. Edit patient record 
+   4. Edit patient record
 3. **Managing Patient Appointments**
       1. Create a new appointment
       2. View appointment
       3. Delete appointment
       4. Archive appointment
+      5. List appointments
+      6. Sort appointments (ascending)
 
 ## Features
 
@@ -208,25 +210,13 @@ Patient ID: 1
 ---
 
 ## Appointment Commands
-A patient in our patient record may have appointments to visit the family clinic. In the appointment view, each appointment on the appointment list indicates an upcoming visit to the clinic. To help small family clinics manage their upcoming appointments for its patients, Doc’It records the following attributes for appointment:
+A patient in our patient record may have appointments to visit the family clinic. 
+In the appointment view, each appointment on the appointment list indicates an upcoming visit to the clinic. 
+To help small family clinics manage their upcoming appointments for its patients, `Doc’It` records the following attributes for appointment:
 
 * Patient’s `INDEX`: The index of the patient in the list, starting from `1`.
 * Appointment Date: The date of the appointment.
 * All appointment-related commands have the keyword `apmt` in front of them.
-
-## List all appointments: `apmt list`
-Shows a list of all appointments.
-
-**Format:** `apmt list`
-
-**Examples:**
-* `apmt list`  Lists all appointments.
-
-**Expected Outcome:**
-```
-1. Patient Name: Joshen Lim | Appointment Date: 2021-10-05
-2. Patient Name: Ian Yong | Appointment Date: 2021-10-06
-```
 
 ## Add an appointment: `apmt add`
 Adds an appointment for the patient of the specified patient id.
@@ -276,6 +266,36 @@ Archives an old appointment that is already past its date.
 **Expected Outcome:**
 ```
 Archived Appointment: David Li; Phone: 91031282; Email: lidavid@example.com; Address: Blk 436 Serangoon Gardens Street 26, #16-43; Tags: [family]; Medical History: lovesick; Datetime: 2022-05-05 1300
+```
+
+## List all appointments: `apmt list`
+Shows a list of all appointments.
+
+**Format:** `apmt list`
+
+**Examples:**
+* `apmt list`  Lists all appointments.
+
+**Expected Outcome:**
+```
+1. Patient Name: Joshen Lim | Appointment Date: 2021-10-05
+2. Patient Name: Ian Yong | Appointment Date: 2021-10-06
+```
+
+## Sort all appointments: `apmt sort`
+Shows a sorted list of all appointments
+
+**Format:** `apmt sort`
+
+**Examples:**
+* `apmt sort`  Lists all appointments.
+
+**Expected Outcome:**
+```
+1. Patient Name: Didymus Ne | Appointment Date: 2021-06-05
+2. Patient Name: Hu Yuxin | Appointment Date: 2021-07-21
+3. Patient Name: Joshen Lim | Appointment Date: 2021-10-05
+4. Patient Name: Ian Yong | Appointment Date: 2021-10-06
 ```
 
 ---
