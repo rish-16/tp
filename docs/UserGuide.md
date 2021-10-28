@@ -110,7 +110,7 @@ understanding of basic functionalities of `Doc’it`, before diving into specifi
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* `INDEX` must a positive integer of the given item in the panel. 
+* `INDEX` must a positive integer of the given item in the panel.
 
 * `DATETIME` must be in the format `yyyy-m-d HHmm` for all commands.<br>
   e.g. `2021-10-28-1530` indicates 28 Oct 2021 at 3.30pm
@@ -225,7 +225,7 @@ Patient ID: 1
 ## Appointment Commands
 A patient in `Doc’it` may have appointments to visit the clinic.
 
-In the Appointments panel, upcoming appointments are shown in the Upcoming tab, and past appointments are archived in the Archived tab. 
+In the Appointments panel, upcoming appointments are shown in the Upcoming tab, and past appointments are archived in the Archived tab.
 
 One appointment stores these details:
 * Index of patient: The index of an existing patient in the Patients panel

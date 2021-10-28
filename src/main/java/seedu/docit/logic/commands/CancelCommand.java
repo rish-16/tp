@@ -14,5 +14,4 @@ public class CancelCommand extends BasicCommand {
     public CommandResult execute(Model model) {
         return new CommandResult(MESSAGE_OP_CANCELED, false, false);
     }
-
 }
