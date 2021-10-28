@@ -428,16 +428,17 @@ Deleted prescription
 ---
 
 ## Upcoming commands
-1. Saving the data `[coming in v1.3]`
-2. Editing the data file `[coming in v1.3]`
-3. Archiving data files `[coming in v1.3]`
+1. Saving the data `[coming in v1.4]`
+2. Editing the data file `[coming in v1.4]`
+3. Archiving data files `[coming in v1.4]`
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous `Doc'it` home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it 
+creates with the file that contains the data of your previous `Doc'it` home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -460,14 +461,14 @@ Deleted prescription
 | List    | `pt list`                                                               | -                                                                                                     |
 
 ### Appointment-related Commands
-| Command | Format                  | Sample                    |
-|---------|-------------------------|---------------------------|
-| Add     | `apmt add INDEX d/DATETIME` | `apmt add 1 d/2021-10-05 1600` |
-| Edit     | `apmt edit APMT_INDEX [i/PATIENT_INDEX] [d/DATETIME]` | `apmt edit 1 d/2021-10-05 1600` |
-| Delete  | `apmt delete INDEX`     | `apmt delete 1`           |
-| Archive | `apmt archive INDEX`    | `apmt archive 1`          |
-| List    | `apmt list`             | -                         |
-| Sort    | `apmt sort`             | -                         |
+| Command | Format                                                | Sample                          |
+|---------|-------------------------------------------------------|---------------------------------|
+| Add     | `apmt add INDEX d/DATETIME`                           | `apmt add 1 d/2021-10-05 1600`  |
+| Edit    | `apmt edit APMT_INDEX [i/PATIENT_INDEX] [d/DATETIME]` | `apmt edit 1 d/2021-10-05 1600` |
+| Delete  | `apmt delete INDEX`                                   | `apmt delete 1`                 |
+| Archive | `apmt archive INDEX`                                  | `apmt archive 1`                |
+| List    | `apmt list`                                           | -                               |
+| Sort    | `apmt sort`                                           | -                               |
 
 
 --------------------------------------------------------------------------------------------------------------------
