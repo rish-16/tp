@@ -135,11 +135,11 @@ public class AddressBookParserTest {
 
     // General commands
 
-    @Test
-    public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(BASIC_CMD_PREFIX + ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(BASIC_CMD_PREFIX + ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
-    }
+//    @Test
+//    public void parseCommand_clear() throws Exception {
+//        assertTrue(parser.parseCommand(BASIC_CMD_PREFIX + ClearCommand.COMMAND_WORD) instanceof ClearCommand);
+//        assertTrue(parser.parseCommand(BASIC_CMD_PREFIX + ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+//    }
 
     @Test
     public void parseCommand_exit() throws Exception {
