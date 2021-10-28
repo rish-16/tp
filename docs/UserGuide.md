@@ -26,12 +26,6 @@ reduce man-hours in managing paper files, translating this saved time into bette
        - [Edit an appointment](#edit-an-appointment-apmt-edit)
        - [Delete an appointment](#delete-an-appointment-apmt-delete)
        - [Archive an appointment](#archive-an-appointment-apmt-archive)
-    4. Upcoming Commands
-       - Help
-       - Clear all entries
-       - Saving all data
-       - Editing data files
-       - Archiving data files
 4. [FAQ](#faq)
 5. [Command Summary](#command-summary)
 6. [Glossary](#glossary)
@@ -437,11 +431,6 @@ Deleted prescription
 ```
 ---
 
-## Upcoming commands
-1. Saving the data `[coming in v1.3]`
-2. Editing the data file `[coming in v1.3]`
-3. Archiving data files `[coming in v1.3]`
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -453,7 +442,7 @@ Deleted prescription
 
 ## Command summary
 
-### General Commands
+### Basic Commands
 | Command     | Format        |
 |-------------|---------------|
 | User Manual | `doc help`    |
@@ -470,21 +459,22 @@ Deleted prescription
 | List    | `pt list`                                                               | -                                                                                                     |
 
 ### Appointment-related Commands
-| Command | Format                  | Sample                    |
-|---------|-------------------------|---------------------------|
-| Add     | `apmt add INDEX d/DATETIME` | `apmt add 1 d/2021-10-05 1600` |
-| Edit     | `apmt edit APMT_INDEX [i/PATIENT_INDEX] [d/DATETIME]` | `apmt edit 1 d/2021-10-05 1600` |
-| Delete  | `apmt delete INDEX`     | `apmt delete 1`           |
-| Archive | `apmt archive INDEX`    | `apmt archive 1`          |
-| List    | `apmt list`             | -                         |
+| Command | Format                                                | Sample                          |
+|---------|-------------------------------------------------------|---------------------------------|
+| Add     | `apmt add INDEX d/DATETIME`                           | `apmt add 1 d/2021-10-05 1600`  |
+| Edit    | `apmt edit APMT_INDEX [i/PATIENT_INDEX] [d/DATETIME]` | `apmt edit 1 d/2021-10-05 1600` |
+| Delete  | `apmt delete INDEX`                                   | `apmt delete 1`                 |
+| Archive | `apmt archive INDEX`                                  | `apmt archive 1`                |
+| List    | `apmt list`                                           | -                               |
+| Sort    | `apmt sort`                                           | -                               |
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
-| Term           | Definition                                                                                |
-|----------------|-------------------------------------------------------------------------------------------|
-| Appointment    | A scheduled consult between a patient and the clinic's doctor at an exact date and time. The doctor may or may not prescribe medication                            |
-| Archive        | Storage for data that is non-urgent, e.g. appointment records that are past their date.   |
-| Patient Record | A record of a patient's details, medical history, medication, appointment list, and name. |
-| Prescription   | The issued medication/treatment for a patient along with a duration and volume.           |
-| Expired Appointment | An appointment that is 24-hours past its scheduled time.                             |
+| Term                | Definition                                                                                                                                |
+|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| Appointment         | A scheduled consult between a patient and the clinic's doctor at an exact date and time. The doctor may or may not prescribe medication.  |
+| Archive             | Storage for data that is non-urgent, e.g. appointment records that are past their date.                                                   |
+| Patient Record      | A record of a patient's details, medical history, medication, appointment list, and name.                                                 |
+| Prescription        | The issued medication/treatment for a patient along with a duration and volume.                                                           |
+| Expired Appointment | An appointment that is 24-hours past its scheduled time.                                                                                  |
