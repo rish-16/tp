@@ -1,6 +1,6 @@
 package seedu.docit.logic.parser;
 
-import static seedu.docit.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.docit.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -42,7 +42,7 @@ public class BasicAddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
         default:
-            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 }
