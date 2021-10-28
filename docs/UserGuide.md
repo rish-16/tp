@@ -11,24 +11,27 @@ reduce man-hours in managing paper files, translating this saved time into bette
 
 1. [Quick Start](#quick-start)
 2. [Overview of Features](#overview-of-features)
-    1. [General Commands](#general-commands)
+    1. [Basic Commands](#general-commands)
        - [Clear all records](#clear-all-records-doc-clear)
        - [Help](#help-doc-help)
        - [Exit the program](#exit-the-program-doc-exit)
-    2. [Patient Commands](#patient-commands)
+    2. [Patient-related Commands](#patient-commands)
        - [Add a patient](#add-a-patient-pt-add)
        - [List all patients](#list-all-patients-pt-list)
        - [Edit a patient](#edit-a-patient-pt-edit)
        - [Delete a patient](#delete-a-patient-pt-delete)
-    3. [Appointment Commands](#appointment-commands)
+    3. [Appointment-related Commands](#appointment-commands)
        - [Add an appointment](#add-an-appointment-apmt-add)
        - [List all appointments](#list-all-appointments-apmt-list)
        - [Edit an appointment](#edit-an-appointment-apmt-edit)
        - [Delete an appointment](#delete-an-appointment-apmt-delete)
        - [Archive an appointment](#archive-an-appointment-apmt-archive)
-    4. Upcoming Commands
-       - Help
-       - Clear all entries
+       - [Sorting all appointments](#sort-all-appointments-apmt-sort) 
+    4. [Basic Functions](#basic-commands)
+       - [Clear all records](#clear-all-records-doc-clear)
+       - - [Help Manual](#help-doc-help)
+       - [Exit](#exit-the-program-doc-exit)
+    5. Upcoming Functions
        - Saving all data
        - Editing data files
        - Archiving data files
@@ -69,7 +72,7 @@ understanding of basic functionalities of `Doc’it`, before diving into specifi
 
 </div>
 
-1. **General functionality**
+1. **Basic functionality**
    1. Clear all records
    2. Get Help
    3. Exit app
@@ -115,14 +118,15 @@ understanding of basic functionalities of `Doc’it`, before diving into specifi
 
 * `INDEX` must a positive integer of the given item in the panel.
 
-* `DATETIME` must be in the format `yyyy-m-d HHmm` for all commands.<br>
-  e.g. `2021-10-28-1530` indicates 28 Oct 2021 at 3.30pm
+* `DATETIME` must be in the format `yyyy-mm-dd HHmm` for all commands, with time using 24-Hour notation.<br>
+  e.g. `2021-10-28 1530` indicates 28 Oct 2021 at 3.30pm
 
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## General Commands
+## Basic Commands
+This section covers basic application-related commands. All of these commands have `doc` in front of them.
 
 ### Clear all records: `doc clear`
 
@@ -258,16 +262,16 @@ Deletes a medical history to the Patient Record.
 **Expected Outcome:**
 ```
 Updated: 
-Updated: 
 Alex Yeoh; Phone: 87438807; Email: alexyeoh@example.com; Address: Blk 30 Geylang Street 29, #06-40; Tags: [friends]; Medical History: high blood pressure, recorded 28 Oct 2021, diabetes, recorded 28 Oct 2021
 ```
 
 
 ---
 
-### Find a Patient from keywords with Name or Medical History: `pt find [keywords...]`
+### Find a Patient with keywords: `pt find [keywords...]`
 
-Finds all patients that match any one of the keywords listed
+Finds all patients that match any one of the keywords listed. These keywords can come from
+either the Patient's Name or Medical History. 
 
 **Format:** `pt find [keywords...]`
 
@@ -295,7 +299,7 @@ One appointment stores these details:
 >:information_source: All appointment-related commands have the keyword `apmt` in front of them.
 These commands modify the Appointments panel of `Doc’it`.
 
-## Add an appointment: `apmt add`
+### Add an appointment: `apmt add`
 Adds an appointment for the patient at the specified index in the Patients panel.
 
 **Format:** `apmt add i/PATIENT_INDEX d/DATETIME`
@@ -307,19 +311,19 @@ Adds an appointment for the patient at the specified index in the Patients panel
 * `apmt add i/1 d/2021-10-05 1500`  Adds appointment on 5 Oct 2021 at 3pm to patient at index 1.
 * `apmt add i/2 d/2022-12-31 0700`  Adds appointment on 31 Dec 2022 at 7am to patient at index 2.
 
-## List all appointments: `apmt list`
-Shows a list of all appointments of all patients in `Doc’it`.
+### List all appointments: `apmt list`
+Shows a list of all appointments.
 
 **Format:** `apmt list`
 
-**Example Usage:**
-```
-apmt list
-```
+**Examples:**
+* `apmt list`  Lists all appointments.
 
 **Expected Outcome:**
 ```
-Listed all appointments.
+1. Patient Name: Joshen Lim | Appointment Date: 2021-10-05
+2. Patient Name: Ian Yong | Appointment Date: 2021-10-06
+3. Patient Name: Didy Ne | Appointment Date: 2021-11-23
 ```
 
 ### Edit an appointment: `apmt edit`
@@ -344,7 +348,7 @@ Edits the details of an appointment at the specified index in the Appointments p
 ---
 
 
-## Delete an appointment: `apmt delete`
+### Delete an appointment: `apmt delete`
 Deletes the appointment at the specified index in the Appointments panel.
 
 **Format:** `apmt delete INDEX`
@@ -357,7 +361,7 @@ Deletes the appointment at the specified index in the Appointments panel.
 * `apmt delete 1`  Deletes appointment at index 1.
 
 
-## Archive an appointment: `apmt archive`
+### Archive an appointment: `apmt archive`
 Archives an old appointment that is already past its date.
 
 **Format:** `apmt archive INDEX`
@@ -373,21 +377,7 @@ Archives an old appointment that is already past its date.
 Archived Appointment: David Li; Phone: 91031282; Email: lidavid@example.com; Address: Blk 436 Serangoon Gardens Street 26, #16-43; Tags: [family]; Medical History: lovesick; Datetime: 2022-05-05 1300
 ```
 
-## List all appointments: `apmt list`
-Shows a list of all appointments.
-
-**Format:** `apmt list`
-
-**Examples:**
-* `apmt list`  Lists all appointments.
-
-**Expected Outcome:**
-```
-1. Patient Name: Joshen Lim | Appointment Date: 2021-10-05
-2. Patient Name: Ian Yong | Appointment Date: 2021-10-06
-```
-
-## Sort all appointments: `apmt sort`
+### Sort all appointments: `apmt sort`
 Shows a sorted list of all appointments
 
 **Format:** `apmt sort`
@@ -421,7 +411,7 @@ Shows a sorted list of all appointments
 
 ## Command summary
 
-### General Commands
+### Basic Commands
 | Command     | Format        |
 |-------------|---------------|
 | User Manual | `doc help`    |
@@ -445,6 +435,8 @@ Shows a sorted list of all appointments
 | Delete  | `apmt delete INDEX`     | `apmt delete 1`           |
 | Archive | `apmt archive INDEX`    | `apmt archive 1`          |
 | List    | `apmt list`             | -                         |
+| Sort    | `apmt sort`             | -                         |
+
 
 --------------------------------------------------------------------------------------------------------------------
 
