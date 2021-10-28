@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-`Doc’it` provides a centralised platform for authorised staff from small family clinics to view, update, and onboard
-patient records, solving the inefficient paper records and files used today. With `Doc’it`, small family clinics can
+`Doc'it` provides a centralised platform for authorised staff from small family clinics to view, update, and onboard
+patient records, solving the inefficient paper records and files used today. With `Doc'it`, small family clinics can
 reduce man-hours in managing paper files, translating this saved time into better front-line care services.
 
 #### Table of Contents
@@ -29,7 +29,7 @@ reduce man-hours in managing paper files, translating this saved time into bette
        - [Sorting all appointments](#sort-all-appointments-apmt-sort) 
     4. [Basic Functions](#basic-commands)
        - [Clear all records](#clear-all-records-doc-clear)
-       - - [Help Manual](#help-doc-help)
+       - [Help Manual](#help-doc-help)
        - [Exit](#exit-the-program-doc-exit)
     5. Upcoming Functions
        - Saving all data
@@ -46,7 +46,7 @@ reduce man-hours in managing paper files, translating this saved time into bette
 
 2. Download the latest `docit.jar` from [here](https://github.com/AY2122S1-CS2103-W14-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your `Doc’it`.
+3. Copy the file to the folder you want to use as the _home folder_ for your `Doc'it`.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    <br>
@@ -67,8 +67,8 @@ reduce man-hours in managing paper files, translating this saved time into bette
 
 <div markdown="block" class="alert alert-info">
 
-This section provides a brief overview of `Doc’it`. The intention is for users to gain a better
-understanding of basic functionalities of `Doc’it`, before diving into specific commands.
+This section provides a brief overview of `Doc'it`. The intention is for users to gain a better
+understanding of basic functionalities of `Doc'it`, before diving into specific commands.
 
 </div>
 
@@ -141,7 +141,7 @@ Format: `doc clear`
 
 ### Help: `doc help`
 
-Shows the user manual for `Doc’it` explaining how to access the help page.
+Shows the user manual for `Doc'it` explaining how to access the help page.
 
 Format: `doc help`
 
@@ -156,7 +156,7 @@ Format: `doc exit`
 ---
 
 ## Patient Commands
-A patient is the primary entity in `Doc’it`. This section documents how to perform CRUD operations on patient
+A patient is the primary entity in `Doc'it`. This section documents how to perform CRUD operations on patient
 records. Do not that _all_ patient-related commands have `pt` in front of them.
 
 ### Add a patient: `pt add`
@@ -291,7 +291,7 @@ either the Patient's Name or Medical History.
 ---
 
 ## Appointment Commands
-A patient in `Doc’it` may have appointments to visit the clinic.
+A patient in `Doc'it` may have appointments to visit the clinic.
 
 In the Appointments panel, upcoming appointments are shown in the Upcoming tab, and past appointments are archived in the Archived tab.
 
@@ -300,7 +300,7 @@ One appointment stores these details:
 * Date and time: The date and time of the appointment
 
 >:information_source: All appointment-related commands have the keyword `apmt` in front of them.
-These commands modify the Appointments panel of `Doc’it`.
+These commands modify the Appointments panel of `Doc'it`.
 
 ### Add an appointment: `apmt add`
 Adds an appointment for the patient at the specified index in the Patients panel.
@@ -437,7 +437,7 @@ Deleted prescription
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous `Doc’it` home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous `Doc'it` home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
