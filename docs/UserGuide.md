@@ -184,7 +184,7 @@ Format: `pt list`
 
 Edits the details of a specified patient.
 
-**Format:** `pt edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] ...`
+**Format:** `pt edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MEDICAL_HISTORY]`
 - All fields are optional but if stated, must not be null or empty
 - `INDEX` is compulsory when making an edit to patient details
 
@@ -437,16 +437,16 @@ Deleted prescription
 | Exit        | `doc exit`    |
 
 ### Patient-related Commands
-| Command | Format                                                                       | Sample                                                                                                |
-|---------|------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-| Add     | `pt add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [m/MEDICAL_HISTORY] [t/TAG]` | `pt add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| Delete  | `pt delete INDEX`                                                            | `pt delete 3`                                                                                         |
-| Edit    | `pt edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`      | `pt edit 2 n/James Lee e/jameslee@example.com`                                                        |
-| Find    | `pt find n/NAME`                                                             | `pt find /nJames Jake`                                                                                |
-| List    | `pt list`                                                                    | -                                                                                                     |
+| Command | Format                                                                                      | Example                                                                                            |
+|---------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| Add     | `pt add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MEDICAL_HISTORY]`                | `pt add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 m/cancer t/friend` |
+| Delete  | `pt delete INDEX`                                                                           | `pt delete 3`                                                                                      |
+| Edit    | `pt edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MEDICAL_HISTORY]` | `pt edit 2 n/James Lee e/jameslee@example.com`                                                     |
+| Find    | `pt find n/NAME`                                                                            | `pt find n/James Jake`                                                                             |
+| List    | `pt list`                                                                                   | -                                                                                                  |
 
 ### Appointment-related Commands
-| Command | Format                                                | Sample                          |
+| Command | Format                                                | Example                         |
 |---------|-------------------------------------------------------|---------------------------------|
 | Add     | `apmt add INDEX d/DATETIME`                           | `apmt add 1 d/2021-10-05 1600`  |
 | Edit    | `apmt edit APMT_INDEX [i/PATIENT_INDEX] [d/DATETIME]` | `apmt edit 1 d/2021-10-05 1600` |
