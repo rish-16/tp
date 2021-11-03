@@ -3,6 +3,8 @@ package seedu.docit.model.patient;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.docit.model.Entry;
@@ -33,25 +35,30 @@ public class MedicalHistory {
 
     /**
      * A medical entry only exists when a patient has a Medical History.
-     * The class is made private to ensure that other classes do not break the abstraction barrier.
      */
-    private class MedicalEntry {
+    public static class MedicalEntry {
         private final String description;
         private LocalDate dateOfEntry;
+
+        private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM uuuu");
 
         private MedicalEntry(String description) {
             this.description = description;
             this.dateOfEntry = LocalDate.now(ZoneId.of("Singapore"));
         }
 
-        private MedicalEntry(String description, LocalDate date) {
+        /**
+         * Constructor for the inner class Medical Entry.
+         * @param description description of a Medical Entry.
+         * @param date date of record of the medcial entry.
+         */
+        public MedicalEntry(String description, LocalDate date) {
             this.description = description;
             this.dateOfEntry = date;
         }
 
         @Override
         public String toString() {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM uuuu");
             String dateToString = dateOfEntry.format(formatter);
             return this.description + ", recorded " + dateToString;
         }
@@ -64,6 +71,14 @@ public class MedicalHistory {
             }
             return false;
         }
+
+        public String getDescription() {
+            return this.description;
+        }
+
+        public String getDateString() {
+            return this.dateOfEntry.format(formatter);
+        }
     }
 
     /**
@@ -72,7 +87,7 @@ public class MedicalHistory {
      */
     public MedicalHistory delete(int i) {
         if (this.isEmpty()) {
-            return this; // nothing to delete
+            return this;
         }
 
         this.entryList.delete(i);
@@ -156,6 +171,16 @@ public class MedicalHistory {
             && test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Generates a Medical History that contains nothing.
+     * @return a medical history object that contains nothing.
+     */
+    public static MedicalHistory generate() {
+        MedicalHistory mh = new MedicalHistory("");
+        mh.delete(0);
+        return mh;
+    }
+
     @Override
     public String toString() { // to store the list into a CSV format
         if (this.isEmpty()) {
@@ -221,6 +246,25 @@ public class MedicalHistory {
                 .map(entry -> entry.get())
                 .filter(val -> val != null)
                 .map(entry -> entry.description);
+    }
+
+    /**
+     * Converts the Medical History object into a List representation.
+     * @return list representation of MedicalHistory object.
+     */
+    public List<MedicalEntry> toList() {
+        if (this.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        int len = entryList.size();
+        List<MedicalEntry> toReturn = new ArrayList<>();
+
+        for (int i = 0; i < len; i++) {
+            toReturn.add(entryList.get(i).get());
+        }
+
+        return toReturn;
     }
 
 }
