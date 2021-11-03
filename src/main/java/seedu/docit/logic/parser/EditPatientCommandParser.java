@@ -32,9 +32,13 @@ public class EditPatientCommandParser implements PatientParser<EditPatientComman
      */
     public EditPatientCommand parsePatientCommand(String args) throws ParseException {
         requireNonNull(args);
+//        ArgumentMultimap argMultimap =
+//                ArgumentTokenizer.tokenize(args, PREFIX_NAME,
+//                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_MEDICAL);
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME,
-                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_MEDICAL);
+                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_MEDICAL);
 
         Index index;
 
@@ -62,7 +66,7 @@ public class EditPatientCommandParser implements PatientParser<EditPatientComman
             editPatientDescriptor
                     .setMedicalHistory(ParserUtil.parseMedicalHistory(argMultimap.getAllValues(PREFIX_MEDICAL)));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPatientDescriptor::setTags);
+//        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPatientDescriptor::setTags);
 
         if (!editPatientDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditPatientCommand.MESSAGE_NOT_EDITED);
@@ -76,13 +80,13 @@ public class EditPatientCommandParser implements PatientParser<EditPatientComman
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
-    }
+//    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+//        assert tags != null;
+//
+//        if (tags.isEmpty()) {
+//            return Optional.empty();
+//        }
+//        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+//        return Optional.of(ParserUtil.parseTags(tagSet));
+//    }
 }

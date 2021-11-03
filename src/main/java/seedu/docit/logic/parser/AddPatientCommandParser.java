@@ -25,10 +25,14 @@ public class AddPatientCommandParser implements PatientParser<AddPatientCommand>
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddPatientCommand parsePatientCommand(String args) throws ParseException {
+//        ArgumentMultimap argMultimap =
+//                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_PHONE,
+//                    CliSyntax.PREFIX_EMAIL, CliSyntax.PREFIX_ADDRESS,
+//                    CliSyntax.PREFIX_TAG, CliSyntax.PREFIX_MEDICAL);
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_PHONE,
-                    CliSyntax.PREFIX_EMAIL, CliSyntax.PREFIX_ADDRESS,
-                    CliSyntax.PREFIX_TAG, CliSyntax.PREFIX_MEDICAL);
+                        CliSyntax.PREFIX_EMAIL, CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_MEDICAL);
 
         if (!ParserUtil.hasAllPrefixes(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_ADDRESS,
                 CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
@@ -39,11 +43,12 @@ public class AddPatientCommandParser implements PatientParser<AddPatientCommand>
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
+//        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
         MedicalHistory medicalHistory = ParserUtil.parseMedicalHistory(argMultimap
                 .getAllValues(CliSyntax.PREFIX_MEDICAL));
 
-        Patient patient = new Patient(name, phone, email, address, tagList, medicalHistory);
+//        Patient patient = new Patient(name, phone, email, address, tagList, medicalHistory);
+        Patient patient = new Patient(name, phone, email, address, medicalHistory);
 
         return new AddPatientCommand(patient);
     }

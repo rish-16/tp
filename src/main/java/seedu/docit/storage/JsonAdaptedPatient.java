@@ -60,9 +60,9 @@ public class JsonAdaptedPatient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+//        tagged.addAll(source.getTags().stream()
+//                .map(JsonAdaptedTag::new)
+//                .collect(Collectors.toList()));
         medicalHistory = source.getMedicalHistory().toString();
     }
 
@@ -72,10 +72,10 @@ public class JsonAdaptedPatient {
      * @throws IllegalValueException if there were any data constraints violated in the adapted patient.
      */
     public Patient toModelType() throws IllegalValueException {
-        final List<Tag> patientTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            patientTags.add(tag.toModelType());
-        }
+//        final List<Tag> patientTags = new ArrayList<>();
+//        for (JsonAdaptedTag tag : tagged) {
+//            patientTags.add(tag.toModelType());
+//        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -109,7 +109,7 @@ public class JsonAdaptedPatient {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(patientTags);
+//        final Set<Tag> modelTags = new HashSet<>(patientTags);
 
         Object[] detailedEntries = readMedicalHistory(medicalHistory);
 
@@ -149,7 +149,8 @@ public class JsonAdaptedPatient {
             }
         }
 
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMedicalHistory);
+//        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMedicalHistory);
+        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelMedicalHistory);
     }
 
     private static Object[] readMedicalHistory(String medicalHistory) {
