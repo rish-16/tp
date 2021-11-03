@@ -199,7 +199,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below.
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="diagrams/BetterModelClassDiagram.png" width="450" />
 
 </div>
 
