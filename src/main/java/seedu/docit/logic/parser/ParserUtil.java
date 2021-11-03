@@ -8,6 +8,8 @@ import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import seedu.docit.commons.core.index.Index;
@@ -27,6 +29,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_DATETIME = "%s is incorrect datetime format.";
+    public static final String MESSAGE_INVALID_NUMERICAL_ONLY = "%s cannot be numerical only.";
     public static final DateTimeFormatter DEFAULT_DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d MMM yyyy HHmm");
     public static final DateTimeFormatter INPUT_DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-M-d HHmm");
 
@@ -82,6 +85,9 @@ public class ParserUtil {
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
+        if (isNumericalOnly(trimmedAddress)) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        }
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
@@ -138,6 +144,27 @@ public class ParserUtil {
         if (formatter == null) {
             formatter = DEFAULT_DATE_TIME_FORMATTER;
         }
+
+        Pattern p = Pattern.compile("(?<year>[0-9]{4})-[0-9]{1,2}-[0-9]{1,2} (?<hour>[0-9]{4})");
+        Matcher m = p.matcher(datetime);
+        if (!m.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_DATETIME, datetime));
+        }
+
+        int year;
+        int hour;
+        try {
+            year = Integer.parseInt(m.group("year"));
+            hour = Integer.parseInt(m.group("hour"));
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_DATETIME, datetime));
+        }
+
+        // to limit inputs further
+        if (year < 2000 || year >= 3000 || hour == 2400) {
+            throw new ParseException(String.format(MESSAGE_INVALID_DATETIME, datetime));
+        }
+
         try {
             return LocalDateTime.parse(datetime, formatter);
         } catch (DateTimeParseException e) {
@@ -146,16 +173,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String medicalEntry} into a {@Code MedicalHistory}.
+     * Parses {@code String medicalEntry} into a {@code MedicalHistory}.
      */
-    public static MedicalHistory parseMedicalEntry(String medicalEntry) {
+    public static MedicalHistory parseMedicalEntry(String medicalEntry) throws ParseException {
         requireNonNull(medicalEntry);
         String trimmedMedicalEntry = medicalEntry.trim();
 
-        if (!isValidMedicalEntry(trimmedMedicalEntry)) {
+        if (isNumericalOnly(trimmedMedicalEntry)) {
+            throw new ParseException(MedicalHistory.MESSAGE_CONSTRAINTS);
+        }
+        if (!MedicalHistory.isValidMedicalEntry(trimmedMedicalEntry)) {
             return MedicalHistory.EMPTY_MEDICAL_HISTORY;
         }
-
         return new MedicalHistory(trimmedMedicalEntry);
     }
 
@@ -164,7 +193,7 @@ public class ParserUtil {
      * @param medicalEntries an empty Arraylist.
      * @return an empty medical history.
      */
-    public static MedicalHistory parseMedicalHistory(Collection<String> medicalEntries) {
+    public static MedicalHistory parseMedicalHistory(Collection<String> medicalEntries) throws ParseException {
         requireNonNull(medicalEntries);
 
         MedicalHistory toParseMh = new MedicalHistory("");
@@ -183,15 +212,18 @@ public class ParserUtil {
         return toParseMh.size() == 0 ? MedicalHistory.EMPTY_MEDICAL_HISTORY : toParseMh;
     }
 
-    private static boolean isValidMedicalEntry(String entry) {
-        return !(entry.length() == 0 || entry == " " || entry == null);
-    }
-
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given {@code
      * ArgumentMultimap}.
      */
     public static boolean hasAllPrefixes(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    private static boolean isNumericalOnly(String input) {
+        requireNonNull(input);
+        Pattern p = Pattern.compile("^[0-9]*$");
+        Matcher m = p.matcher(input);
+        return m.matches();
     }
 }

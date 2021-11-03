@@ -50,6 +50,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addPatient() throws Exception {
         Patient patient = new PatientBuilder().build();
+        String testString = PT_PREFIX + PatientUtil.getAddCommand(patient);
         AddPatientCommand command = (AddPatientCommand) parser.parseCommand(
                 PT_PREFIX + PatientUtil.getAddCommand(patient));
         assertEquals(new AddPatientCommand(patient), command);
@@ -134,7 +135,6 @@ public class AddressBookParserTest {
 
     // General commands
 
-    @Disabled("This test crashes because of the presence of the confirmation box for ClearCommand.")
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(BASIC_CMD_PREFIX + ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(BASIC_CMD_PREFIX
