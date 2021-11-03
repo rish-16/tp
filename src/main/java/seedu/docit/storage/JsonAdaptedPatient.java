@@ -1,7 +1,6 @@
 package seedu.docit.storage;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,7 +30,7 @@ public class JsonAdaptedPatient {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final String medicalHistory;
+    private final List<JsonAdaptedMedicalEntry> medicalHistory;
 
     /**
      * Constructs a {@code JsonAdaptedPatient} with the given patient details.
@@ -40,7 +39,7 @@ public class JsonAdaptedPatient {
     public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("docit") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                              @JsonProperty("medicalHistory") String medical) {
+                              @JsonProperty("medicalHistory") List<JsonAdaptedMedicalEntry> medicalHistory) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -48,7 +47,7 @@ public class JsonAdaptedPatient {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.medicalHistory = medical;
+        this.medicalHistory = medicalHistory;
 
     }
 
@@ -63,7 +62,12 @@ public class JsonAdaptedPatient {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        medicalHistory = source.getMedicalHistory().toString();
+        medicalHistory = source.getMedicalHistory()
+                            .toList()
+                            .stream()
+                            .filter(x -> x != null)
+                            .map(x -> new JsonAdaptedMedicalEntry(x.getDescription(), x.getDateString()))
+                            .collect(Collectors.toList());
     }
 
     /**
@@ -111,55 +115,17 @@ public class JsonAdaptedPatient {
 
         final Set<Tag> modelTags = new HashSet<>(patientTags);
 
-        Object[] detailedEntries = readMedicalHistory(medicalHistory);
+        MedicalHistory modelMedicalHistory = MedicalHistory.generate();
 
-        MedicalHistory modelMedicalHistory = new MedicalHistory("");
+        for (JsonAdaptedMedicalEntry medicalEntry: medicalHistory) {
+            modelMedicalHistory.add(medicalEntry.getDescription(), medicalEntry.getDateString());
+        }
 
-        if (detailedEntries.length > 0) { // has at least one medical entry
-            modelMedicalHistory.delete(0);
-
-            for (int i = 0; i < detailedEntries.length; i++) {
-                @SuppressWarnings("unchecked")
-                String[] entry = (String[]) detailedEntries[i];
-
-                if (entry.length == 1) { // no date
-                    if (!isValidMh(entry[0])) {
-                        modelMedicalHistory = MedicalHistory.EMPTY_MEDICAL_HISTORY;
-                    } else {
-                        if (modelMedicalHistory.isEmpty()) {
-                            modelMedicalHistory = new MedicalHistory(entry[0].trim());
-                        } else {
-                            modelMedicalHistory.add(entry[0].trim());
-                        }
-
-                    }
-                } else {
-                    if (!isValidMh(entry[1])) {
-                        modelMedicalHistory = MedicalHistory.EMPTY_MEDICAL_HISTORY;
-                    } else {
-                        if (modelMedicalHistory.isEmpty()) {
-                            modelMedicalHistory = new MedicalHistory("");
-                            modelMedicalHistory.delete(0);
-                            modelMedicalHistory.add(entry[1].trim(), entry[0].trim());
-                        } else {
-                            modelMedicalHistory.add(entry[1].trim(), entry[0].trim());
-                        }
-                    }
-                }
-            }
+        if (medicalHistory.size() == 0) {
+            modelMedicalHistory = MedicalHistory.EMPTY_MEDICAL_HISTORY;
         }
 
         return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMedicalHistory);
-    }
-
-    private static Object[] readMedicalHistory(String medicalHistory) {
-        String[] entries = medicalHistory.split(", ");
-        Object[] entriesDateDesc = Arrays.stream(entries).map(x -> x.split("\\| ")).toArray();
-        return entriesDateDesc;
-    }
-
-    private static boolean isValidMh(String entry) {
-        return !(entry.length() == 0 || entry == " " || entry == null);
     }
 
 }
