@@ -22,11 +22,11 @@ public class DeletePrescriptionCommand extends AppointmentCommand {
     public static final String MESSAGE_USAGE = "apmt "
             + COMMAND_WORD + ": Deletes a prescription from an appointment based "
             + "on appointment index and medicine name. \n"
-            + "Parameters: \n"
-            + CliSyntax.PREFIX_INDEX + "ID OF APPOINTMENT \n"
+            + "Parameters: "
+            + "APPOINTMENT_INDEX "
             + CliSyntax.PREFIX_NAME + "MEDICINE \n"
             + "Example: apmt " + COMMAND_WORD + " "
-            + CliSyntax.PREFIX_INDEX + "1 "
+            + "1 "
             + CliSyntax.PREFIX_NAME + "Penicillin ";
 
     public static final String MESSAGE_DELETE_PRESCRIPTION_SUCCESS = "Deleted prescription: \nMedicine: %1$s\n\n"

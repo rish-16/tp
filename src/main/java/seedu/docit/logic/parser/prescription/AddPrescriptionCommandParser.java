@@ -26,25 +26,29 @@ public class AddPrescriptionCommandParser implements Parser<AddPrescriptionComma
      */
     @Override
     public AddPrescriptionCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_INDEX,
+        Index index;
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_DURATION, CliSyntax.PREFIX_VOLUME);
 
-        if (!ParserUtil.hasAllPrefixes(argMultimap, CliSyntax.PREFIX_INDEX, CliSyntax.PREFIX_VOLUME,
-                CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_DURATION) || !argMultimap.getPreamble().isEmpty()) {
+        if (!ParserUtil.hasAllPrefixes(argMultimap, CliSyntax.PREFIX_VOLUME,
+                CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_DURATION)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPrescriptionCommand.MESSAGE_USAGE));
         }
-        try {
-            Index appointmentIndex = ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_INDEX).get());
-            String medicineName = argMultimap.getValue(CliSyntax.PREFIX_NAME).get();
-            String duration = argMultimap.getValue(CliSyntax.PREFIX_DURATION).get();
-            String volume = argMultimap.getValue(CliSyntax.PREFIX_VOLUME).get();
-            return new AddPrescriptionCommand(appointmentIndex, medicineName, volume, duration);
 
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPrescriptionCommand.MESSAGE_USAGE), pe);
         }
+
+        String medicineName = argMultimap.getValue(CliSyntax.PREFIX_NAME).get();
+        String duration = argMultimap.getValue(CliSyntax.PREFIX_DURATION).get();
+        String volume = argMultimap.getValue(CliSyntax.PREFIX_VOLUME).get();
+        return new AddPrescriptionCommand(index, medicineName, volume, duration);
+
+
     }
 
 }
