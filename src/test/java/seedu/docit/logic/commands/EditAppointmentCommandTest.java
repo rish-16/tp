@@ -21,7 +21,7 @@ import seedu.docit.model.appointment.Appointment;
 import seedu.docit.testutil.TypicalAppointments;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditPatientCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for EditAppointmentCommand.
  */
 public class EditAppointmentCommandTest {
 
