@@ -35,6 +35,7 @@ public class EditAppointmentCommandTest {
                 INDEX_FIRST_PATIENT, new EditAppointmentDescriptor());
         Appointment editedAppointment = model.getFilteredAppointmentList().get(INDEX_FIRST_PATIENT.getZeroBased());
 
+        // no change occurs when there is no field to edit
         String expectedMessage = String.format(
                 EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment);
 
