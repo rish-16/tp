@@ -25,7 +25,7 @@ import seedu.docit.testutil.TypicalAppointments;
  */
 public class EditAppointmentCommandTest {
 
-    private final AppointmentBook fullApptBook = TypicalAppointments.getTypicalAppointmentList();
+    private final AppointmentBook fullApptBook = TypicalAppointments.getTypicalAppointmentBook();
     private final Model model = new ModelManager(getTypicalAddressBook(), fullApptBook,
             new ArchivedAppointmentBook(), new UserPrefs());
 
