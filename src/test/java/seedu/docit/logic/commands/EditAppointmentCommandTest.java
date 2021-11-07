@@ -9,6 +9,7 @@ import static seedu.docit.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.docit.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
 import static seedu.docit.testutil.TypicalPatients.getTypicalAddressBook;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import seedu.docit.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
@@ -28,6 +29,11 @@ public class EditAppointmentCommandTest {
     private final AppointmentBook fullApptBook = TypicalAppointments.getTypicalAppointmentBook();
     private final Model model = new ModelManager(getTypicalAddressBook(), fullApptBook,
             new ArchivedAppointmentBook(), new UserPrefs());
+
+    @BeforeAll
+    public static void resetTypicalAppointments() {
+        TypicalAppointments.resetPrescriptions();
+    }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
