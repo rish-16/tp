@@ -122,11 +122,11 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY_APPT = new EditAppointmentCommand.EditAppointmentDescriptor();
-        DESC_AMY_APPT.setPatientIndex(Index.fromOneBased(Integer.parseInt(VALID_PATIENT_ID_1)));
+        DESC_AMY_APPT.setPatientIndex(Index.fromOneBased(Integer.parseInt(VALID_PATIENT_INDEX_1)));
         DESC_AMY_APPT.setDatetime(LocalDateTime.parse("2020-01-10 1600", formatter));
 
         DESC_BOB_APPT = new EditAppointmentCommand.EditAppointmentDescriptor();
-        DESC_BOB_APPT.setPatientIndex(Index.fromOneBased(Integer.parseInt(VALID_PATIENT_ID_2)));
+        DESC_BOB_APPT.setPatientIndex(Index.fromOneBased(Integer.parseInt(VALID_PATIENT_INDEX_2)));
         DESC_BOB_APPT.setDatetime(LocalDateTime.parse("2020-01-10 1600", formatter));
     }
 
