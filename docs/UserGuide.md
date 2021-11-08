@@ -427,7 +427,7 @@ Shows a sorted list of all appointments based on urgency (appointments today > a
 **Format:** `apmt sort`
 
 **Examples:**
-* `apmt sort`  Lists all appointments.
+* `apmt sort`  Lists all sorted appointments.
 
 **GUI Display:**
 ![Sorted Appointments](images/SortAppointments.png)
