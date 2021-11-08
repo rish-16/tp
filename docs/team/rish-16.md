@@ -22,23 +22,23 @@ care services.
 ### Enhancements
 
 * Divided `Command` into `BasicCommand`, `PatientCommand`, and `AppointmentCommand` to promote better OOP.
-  * Allocated each existing and new command into these 3 categories based on purpose and function.
+    * Allocated each existing and new command into these 3 categories based on purpose and function.
 * Divided `Parser` into `BasicParser`, `PatientParser`, and `AppointmentParser` to promote better OOP.
-  * Allocated each existing and new command parser into these 3 categories based on purpose and function.
+    * Allocated each existing and new command parser into these 3 categories based on purpose and function.
 * Removed all mentions of `Tag` from the app and revamped Patient-related tests ([#248](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/248))
 * Wrote unit tests for `EditCommandTest` ([#287](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/287))
 ---
 
 ### Documentation
 * User Guide:
-  * Add description and usage instructions for new commands ([#142](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/142))
-  * Cosmetic changes in terms of grammar ([#184](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/184), [#185](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/185), [#248](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/248))
+    * Add description and usage instructions for new commands ([#142](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/142))
+    * Cosmetic changes in terms of grammar ([#184](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/184), [#185](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/185), [#248](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/248))
 * Developer Guide:
-  * Revamped full `Logic` section with breakdown of `Command` ([#165](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/165), )
-  * Updated DG with new breakdown of `Command` ([#100](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/100), [#105](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/105), [#248](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/248))
-  * Added a new `Parser` section under `Logic` detailing the changes to existing parsers for all commands
-  * Updated diagrams based on new designs/ideas used throughout DG ([#165](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/165))
-  * Add table of contents and fix formatting issues to final release ([#318](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/318))
+    * Revamped full `Logic` section with breakdown of `Command` ([#165](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/165), )
+    * Updated DG with new breakdown of `Command` ([#100](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/100), [#105](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/105), [#248](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/248))
+    * Added a new `Parser` section under `Logic` detailing the changes to existing parsers for all commands
+    * Updated diagrams based on new designs/ideas used throughout DG ([#165](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/165))
+    * Add table of contents and fix formatting issues to final release ([#318](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/318))
 
 ---
 
