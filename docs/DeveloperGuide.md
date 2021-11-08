@@ -2,8 +2,48 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-  {:toc}
+
+## Table of Contents
+- [Acknowledgements](#acknowledgements)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+    - [Architecture](#architecture)
+    - [UI component](#ui-component)
+    - [Logic component](#logic-component)
+    - [Model component](#model-component)
+    - [Storage component](#storage-component)
+    - [Common classes](#common-classes)
+- [Implementation](#implementation)
+    - [Medical History](#medical-history)
+        - [Add Medical Entry feature](#add-medical-entry-feature)
+        - [Delete Medical Entry feature](#delete-medical-entry-feature)
+    - [Appointment composed of a Valid Patient when added, loaded and stored](#appointment-composed-of-a-valid-patient-when-added-loaded-and-stored)
+      - [How Appointment is implemented](#how-appointment-is-implemented)
+      - [Loading Appointments](#loading-appointments)
+      - [Adding Appointments](#adding-appointments)
+      - [Deleting Patient that has made an Appointment](#deleting-patient-that-has-made-an-appointment)
+      - [Saving Appointments](#saving-appointments)
+      - [Design considerations](#design-considerations)
+      - [Archiving an Appointment](#archiving-an-appointment) 
+        - [Auto-Archiving Feature](#auto-archiving-feature)
+    - [Recording a Patient's Prescription feature](#recording-a-patients-prescription-feature)
+        - [How Prescription is implemented](#how-prescription-is-implemented)
+        - [Reason for implementation of Prescription](#reason-for-implementation-of-prescription)
+        - [Prescription commands](#prescription-commands)
+            - [Add Prescription command](#add-prescription-command)
+            - [Delete Prescription command sequence](#delete-prescription-command-sequence)
+            - [General Prescription command sequence](#general-prescription-command-sequence)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
+  - [Deleting a patient](#deleting-a-patient)
+  - [Saving data](#saving-data)
 
 ---
 
@@ -429,7 +469,7 @@ The diagram below is a more in-depth look at how `JSONAdaptedAppointment` is ins
       Appointment by traversing the `AddressBook` and `AppointmentBook` respectively.
     * **Cons:** Takes more computational work when loading compared to finding the `Patient` at an index at O(1) time.
 
-### Archiving an Appointment
+#### Archiving an Appointment
 
 **Overview**
 
