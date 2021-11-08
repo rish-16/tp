@@ -61,7 +61,16 @@ public class Patient implements Comparable<Patient> {
      * @return patient with combined {@code MedicalHistory} object.
      */
     public Patient addMedicalHistory(MedicalHistory mH) { // tell-don't-ask
-        return new Patient(name, phone, email, address, this.medicalHistory.append(mH));
+        try {
+            MedicalHistory copy = MedicalHistory.generate().append(this.medicalHistory);
+            copy.append(mH);
+        } catch (RuntimeException e) {
+            throw e;
+        }
+
+        MedicalHistory editedMedicalHistory = this.medicalHistory.append(mH);
+
+        return new Patient(name, phone, email, address, editedMedicalHistory);
     }
 
     /**

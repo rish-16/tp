@@ -938,15 +938,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Extensions**
 
-* 2a. No patient has a name or medical history that matches the user's keywords.
-
-    * 2a1. `Doc'it` shows an error message.
-
-      Use case resumes at step 1.
-
-**Use case: UC014 - Exit program**
+**Use case: UC14 - Exit program**
 
 **MSS**
 
