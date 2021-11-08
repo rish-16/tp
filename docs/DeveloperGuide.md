@@ -164,12 +164,19 @@ How the `Logic` component works:
 3. The command can communicate with the `Model` when it is executed (e.g. to add a patient).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("pt delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("pt delete 1")` API call. The illustration has been split into two parts: (1) Parse User Input, (2) Execute command.
+
+**Parse User Input**
+
+![Interactions Inside the Logic Component for the `pt delete 1` Command](diagrams/DeletePatientFeatureSequenceDiagram1.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `PatientBookParser` and `DeletePatientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+**Execute command**
 
 ![Interactions Inside the Logic Component for the `pt delete 1` Command](diagrams/DeletePatientFeatureSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePatientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -323,8 +330,16 @@ The Add Medical Entry feature is implemented via the `AddMedicalEntryCommand`, w
 7. The `AddMedicalEntryCommand` will then call the methods `setPatient`, `updateAppointmentBook`, `updateFilteredPatientList` and `updateFilteredAppointmentList` provided by the `Model`, editing the patient's medical history information.
 8. The `AddMedicalEntryCommand` returns a `CommandResult`, which will be returned to the `LogicManager`.
 
-Below is a sequence diagram illustrating the interactions between the `Logic` and `Model` components when the user inputs `pt ma 1 m/diabetes` command. Note that the full command string has been abbreviated to `...`.
+Below is a sequence diagram illustrating the interactions between the `Logic` and `Model` components when the user inputs `pt ma 1 m/diabetes` command. Note that the full command string has been abbreviated to `...`. The illustration has been split into two parts: (1) Parse User Input, (2) Execute command.
 
+**Parse User Input**
+
+![Sequence diagram of Add Medical Entry Feature](diagrams/AddMedicalEntrySequenceFeatureDiagram1.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `PatientBookParser` and `AddMedicalEntryCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+**Execute a:AddMedicalEntryCommand**
 
 ![Sequence diagram of Add Medical Entry Feature](diagrams/AddMedicalEntryFeatureSequenceDiagram.png)
 
@@ -361,8 +376,16 @@ The Delete Medical Entry feature is implemented via the `DeleteMedicalEntryComma
 7. The `DeleteMedicalEntryCommand` will then call the methods `setPatient`, `updateAppointmentBook`, `updateFilteredPatientList` and `updateFilteredAppointmentList` provided by the `Model`, editing the patient's medical history information.
 8. The `DeleteMedicalEntryCommand` returns a `CommandResult`, which will be returned to the `LogicManager`.
 
-Below is a sequence diagram illustrating the interactions between the `Logic` and `Model` components when the user inputs `pt md 1 i/1` command. Note that the full command string has been abbreviated to `...`.
+Below is a sequence diagram illustrating the interactions between the `Logic` and `Model` components when the user inputs `pt md 1 i/1` command. Note that the full command string has been abbreviated to `...`. The illustration has been split into two parts: (1) Parse User Input, (2) Execute command.
 
+**Parse User Input**
+
+![Sequence diagram of Delete Medical Entry Feature](diagrams/DeleteMedicalEntryFeatureSequenceDiagram1.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `PatientBookParser` and `DeleteMedicalEntryCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+**Execute d:DeleteMedicalEntryCommand**
 
 ![Sequence diagram of Delete Medical Entry Feature](diagrams/DeleteMedicalEntryFeatureSequenceDiagram.png)
 
@@ -441,7 +464,7 @@ After every command that the user makes, appointments are saved. In `LogicManage
 
 ![SaveAppointmentSequenceDiagram](images/SaveAppointmentSequenceDiagram1.png)
 
-The diagram below is a more in-depth look at how `JSONAdaptedAppointment` is instantiated.
+The diagram below is a more in-dcannnepth look at how `JSONAdaptedAppointment` is instantiated.
 
 ![SaveAppointmentSequenceDiagram](images/SaveAppointmentSequenceDiagram2.png)
 
@@ -596,11 +619,11 @@ Once the check has been done, the prescription in question is added/removed and 
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+* [Documentation guide](https://ay2122s1-cs2103-w14-1.github.io/tp/Documentation.html)
+* [Testing guide](https://ay2122s1-cs2103-w14-1.github.io/tp/Testing.html)
+* [Logging guide](https://ay2122s1-cs2103-w14-1.github.io/tp/Logging.html)
+* [Configuration guide](https://ay2122s1-cs2103-w14-1.github.io/tp/Configuration.html)
+* [DevOps guide](https://ay2122s1-cs2103-w14-1.github.io/tp/DevOps.html)
 
 ---
 
@@ -611,10 +634,13 @@ Once the check has been done, the prescription in question is added/removed and 
 **Target user profile**:
 
 * Authorised staff from small family clinics (both receptionist and doctors)
-* Clinics lacking access to the cloud and are undeveloped compared to hospitals
-* Young clinics that do not have technological capabilities
+* Clinic staff from clinics that lack access to cloud and are undeveloped compared to hospitals
+* Clinic staff from young clinics that do not have technological capabilities
+* Prefer a type-first experience, and can type fast
 
 **Value proposition**:
+* Provide a centralised platform for clinic staff to manage patient records, reducing man hours from managing paper documents
+
 Today, small family clinics often record patient information using paper application forms.
 Such recording of patient information results in the clinic having a messy and inefficient patient record information;
 the family clinic will have to flip through files and documents in order to find the patient. Doc’it aims to provide a
@@ -692,7 +718,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. Necessary details of patient are absent (name, NRIC).
+* 1a. Necessary details of patient are absent (name, address, phone number).
 
     * 1a1. `Doc'it` shows an error message.
 
@@ -816,7 +842,73 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC09 - Exit program**
+**Use case: UC09 - Add a Medical Entry to Patient**
+
+**MSS**
+
+1. `Doc'it` displays all patients.
+2. User requests to add a medical entry to a specified patient.
+3. `Doc'it` adds the medical entry and records the date of entry.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. `Doc'it` shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC10 - Delete a Medical Entry from a Patient**
+
+**MSS**
+
+1. `Doc'it` displays all patients.
+2. User requests to delete a specified medical entry from a specified patient.
+3. `Doc'it` deletes the specified medical entry from the patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index specifying the medical entry is invalid.
+
+    * 2a1. `Doc'it` shows an error message.
+
+      Use case resumes at step 1.
+    
+* 2b. The given index specifying the patient is invalid.
+
+    * 2b1. `Doc'it` shows an error message.
+
+      Use case resumes at step 1.
+    
+* 2c. The patient specified has an empty medical history.
+
+    * 2c1. `Doc'it` shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC11 - Find patient**
+
+**MSS**
+
+1. `Doc'it` displays all patients.
+2. User requests to find patients whose names or medical histories match the given set of keywords.
+3. `Doc'it` lists a filtered list of patients that satisfy the keywords given by the user.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No patient has a name or medical history that matches the user's keywords.
+
+    * 2a1. `Doc'it` shows an error message.
+
+      Use case resumes at step 1.
+    
+**Use case: UC12 - Exit program**
 
 **MSS**
 
@@ -843,6 +935,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. Data should be stored locally in an easily-editable text file.
 6. Should not depend on any cloud-based remote server.
 7. Data should not be stored in an external Database Management System (DBMS) or data warehouse.
+8. Clinic staff inexperienced in using computers should be able to easily use Doc'it. 
+9. The GUI should work well and not result in resolution-related inconveniences to the user for screen resolutions 1920x1080 and higher, and screen scale at 100% and 125%.
+10. The GUI should be usable, defined as the ability to carry out all functions, even if resolution is not optimal, for resolutions 1280x720 and higher and screen scale at 150%.
 
 ### Glossary
 
@@ -854,6 +949,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Patient Record      | A record of a patient's name, phone number, address, email and medical history.                                                 |
 | Prescription        | The issued medication/treatment for a patient along with a duration and volume.                                                           |
 | Expired Appointment | An appointment that is 24-hours past its scheduled time.                                                                                  |
+| Medical History     | A patient's set of recorded medical complications from the past.                                                                                 |
+| Medical Entry       | A specific past health complication of a patient. There can be multiple medical entries within a patient's medical history.
 
 ---
 
@@ -863,7 +960,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
@@ -872,22 +968,17 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
     2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-2. Saving window preferences
-
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-    2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
 
 ### Deleting a patient
 
 1. Deleting a patient while all patients are being shown
 
-    1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
-    2. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-    3. Test case: `delete 0`<br>
-       Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
-    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Prerequisites: List all patients using the `pt list` command. Multiple patients in the list.
+    2. Test case: `pt delete 1`<br>
+       Expected: First patient is deleted from the list. Details of the deleted patient shown in the status message.
+    3. Test case: `pt delete 0`<br>
+       Expected: No patient is deleted. Error details shown in the status message.
+    4. Other incorrect patient delete commands to try: `pt delete`, `delete 1`, `pt delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
    
 2. Deleting a patient that has an appointment
@@ -896,7 +987,55 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `delete 1`<br>
       Expected: First patient is deleted from Patient Panel. Patient's appointments in Appointment panel is deleted as well.
 
+### Adding a patient
+1. Adding a patient
 
+    1. Test case: `pt add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/diabetes`. <br>
+       Expected: Patient is added to the end of the list. Details of the added patient shown in the status message.
+    2. Test case: `pt add p/98765432 e/johnd@example.com`. <br>
+       Expected: No patient is added. Error details shown in the status message.
+    3. Other incorrect patient add commands to try: `pt add`, `add 1`, `pt add m/diabetes`, `...`
+       Expected: Similar to previous.
+
+### Editing a patient
+1. Editing a patient
+    1. Prerequisites: List all patients using the `pt list` command. Multiple patients in the list.
+    2. Test case: `pt edit 1 n/Joshen Lim` <br>
+       Expected: Name of first patient is edited. Details of the edited patient shown in the status message.
+    3. Test case: `pt edit 1 n/` <br>
+       Expected: No edit is executed. Error details shown in the status message.
+    4. Other incorrect patient add commands to try: `pt edit`, `edit 1 n/Joshen Lim`, `pt edit x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+       
+### Adding a Medical Entry to a Patient's Medical History
+1. Adding a medical Entry
+    1. Prerequisites: List all patients using the `pt list` command. Multiple patients in the list.
+    2. Test case: `pt ma 1 m/diabetes` <br>
+       Expected: Medical History of first patient has the new medical entry added to the back of the list. The medical entry should have the corresponding date recorded. Details of the patient shown in the status message.
+    3. Test case: `pt ma 1 i/` <br>
+       Expected: No medical entry is added. Error details shown in the status message.
+    4. Other incorrect patient add commands to try: `pt ma`, `ma 1 m/high blood pressure`, `pt ma x m/lovesick`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+       
+### Deleting a Medical Entry from a Patient's Medical History
+1. Deleting a medical entry from a patient's non-empty medical history
+    1. Prerequisites: List all patients using the `pt list` command. Multiple patients in the list.
+    2. Test case: `pt md 1 i/1` <br>
+       Expected: Medical Entry of the specified index within the Medical History of first patient is deleted. If there are other entries within the Medical History, the list of entries will re-index from 1. If there are no other entries within the Medical History, "No medical history recorded." is shown on the Patient Card. Details of the patient shown in the status message.
+    3. Test case: `pt md 1 i/` <br>
+       Expected: No medical entry is deleted. Error details shown in the status message.
+    4. Other incorrect patient add commands to try: `pt md`, `md 1 i/1`, `pt md x i/1`, `pt md 1 i/x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Deleting a medical entry from a patient's with an empty medical history
+    1. Prerequisites: List all patients using the `pt list` command. Multiple patients in the list.
+    2. Test case: `pt md 1 i/1` <br>
+       Expected: Nothing is changed. Status message reflects that there is "No medical history record to delete from the patient". 
+    3. Test case: `pt md 1 i/` <br>
+       Expected: Nothing is changed. Error details shown in the status message.
+    4. Other incorrect patient add commands to try: `pt md`, `md 1 i/1`, `pt md x i/1`, `pt md 1 i/x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+       
 ### Saving data
 
 1. Dealing with missing/corrupted data files
