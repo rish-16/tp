@@ -30,13 +30,13 @@ Given below are my contributions to the project:
     * Justification: This feature extends the functionality of the CLI application as a user can immediately view upcoming appointments at a glance.
     * Highlights:  A "TODAY" tag is displayed on appointment cards with appointments scheduled today. Integration of appointments on the GUI was
       challenging as many considerations had to be made with regards to how appointments should be handled when patients
-      were removed from the system. 
+      were removed from the system.
     * Relevant PRs: [\#152](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/152), [\#91](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/91)
 
 
 - **New Feature**: Auto-Archive feature
     * What it does: auto-archives expired (24-hour past) appointments.
-    * Justification: This feature improves the archiving process significantly because 
+    * Justification: This feature improves the archiving process significantly because
       this saves the user trouble of archiving many (e.g. >20) past appointments when
       they are already over.
     * Highlights: This feature uses a thread pool to schedule the archive command at a specific timing each day. It was challenging to implement testcases due to the time-sensitive nature
@@ -82,6 +82,62 @@ Given below are my contributions to the project:
 
 - **Debugging**:
     * Bugs fixed: [\#97](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/97), [\#114](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/114), [\#130](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/130), [\#167](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/167), [\#173](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/173), [\#229](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/229), [\#230](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/230), [\#238](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/238), [\#262](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/262)
+
+<div style="page-break-after: always;"></div>
+
+### Contributions to the User Guide:
+
+### List all archived appointments: `apmt alist`
+Shows the list of all archived appointments.
+
+**Format:** `apmt alist`
+
+**Examples:**
+* `apmt alist`  Lists all archived appointments.
+
+**Expected Outcome:**
+```
+[UI CARDS]
+1. Patient Name: Bernice Yu | Appointment Date: 2021-1-05
+2. Patient Name: Alex Yeoh | Appointment Date: 2021-1-06
+3. Patient Name: Charlotte Oliveiro | Appointment Date: 2021-1-23
+Listed all archived appointments
+```
+
+### Archive an appointment: `apmt archive`
+Archives an old appointment that is already past its date.
+
+**Format:** `apmt archive INDEX`
+* Archives the appointment at the specified INDEX.
+* The index refers to the index number shown in the displayed appointment list.
+* The index must be a positive integer 1, 2, 3, ...
+
+**Examples:**
+* `apmt archive 1`  Archives appointment at index 1.
+
+**Expected Outcome:**
+```
+Archived Appointment:
+Patient: Alex Yeoh; Datetime: 31 Dec 2012 1200; Prescription: []
+```
+
+### Sort all appointments: `apmt sort`
+Shows a sorted list of all appointments
+
+**Format:** `apmt sort`
+
+**Examples:**
+* `apmt sort`  Lists all appointments.
+
+**Expected Outcome:**
+```
+[UI CARDS]
+1. Patient Name: Bernice Yu | Appointment Date: 2021-06-05
+2. Patient Name: Charlotte Oliveiro | Appointment Date: 2021-07-21
+3. Patient Name: Alex Yeoh | Appointment Date: 2021-10-05
+4. Patient Name: David Li | Appointment Date: 2021-10-06
+Sorted Appointments based on default settings.
+```
 
 <div style="page-break-after: always;"></div>
 

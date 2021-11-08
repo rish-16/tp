@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+![Doc'it icon](images/DocitHeader.png)
+
 `Doc'it` provides a centralised platform for authorised staff from small family clinics to view, update, and onboard
 patient records, solving the inefficient paper records and files used today. With `Doc'it`, small family clinics can
 reduce man-hours in managing paper files, translating this saved time into better front-line care services.
@@ -58,6 +60,8 @@ reduce man-hours in managing paper files, translating this saved time into bette
     * **`doc exit`** : Exits the app.
 
 6. Refer to the **Features** section below for details of each command.
+this on
+7. Doc'it is built specifically for small clinic staff based in Singapore. Hence, the date and time run in Singapore time.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -92,6 +96,32 @@ understanding of basic functionalities of `Doc'it`, before diving into specific 
     7. Managing appointment prescriptions
         1. Add prescription
         2. Remove prescription
+    
+##Navigating Doc'it
+This section details the various components of Doc'it interface and how you could go about navigating Doc'it.
+
+   ![Navigability](images/Navigability.png)
+
+### Patient View
+![Navigability](images/PatientView.png)
+In this view, you can view all Patients. Each Patient has a name, phone number, address, email and a Medical History. 
+
+All patient-related commands will have change parts of the Patient View.
+
+### Appointment View
+![Navigability](images/AppointmentView.png)
+In this view, you can view all Appointments. Each Appointment has the patient, date and time.
+
+The AppointmentView comprises of two types of Appointments: Upcoming and Archive. Upcoming appointments are scheduled appointments, while Archived appointments are previous appointments that have been archived. You can switch between the two with the `apmt list` and `apmt alist` command. Alternatively, you could also click on the corresponding tab.
+
+### Command Result Status Display
+![Navigability](images/CommandResultStatusDisplay.png)
+In this component, you can view the messages and feedback from Doc'it after every command.
+
+### Command Box
+![Navigability](images/CommandBox.png)
+This is the component where you will input your commands. After inputting your commands, you may click the `Enter` key on your keyboard. Alternatively, you can click the `Send` button displayed here.
+
 
 ## Features
 
@@ -143,6 +173,8 @@ Shows the user manual for `Doc'it` explaining how to access the help page.
 
 Format: `doc help`
 
+![DocHelp](images/DocHelp.png)
+
 ---
 
 ### Exit the program: `doc exit`
@@ -177,6 +209,10 @@ New patient added:
 Joshen Lim; Phone: 99988888; Email: joshen@gmail.com; Address: 123 Clementi Road SG293821
 ```
 
+**GUI Display:**
+![PtAdd](images/PtAdd.png)
+
+
 ---
 
 ### List all patients: `pt list`
@@ -185,6 +221,13 @@ Shows a list of all patients in the record system.
 
 Format: `pt list`
 
+**Expected Outcome:**
+```
+Listed all patients
+```
+
+**GUI Display:**
+![Patient Card](images/PatientCard.png)
 ---
 
 ### Edit a patient: `pt edit`
@@ -196,13 +239,14 @@ Edits the details of a specified patient.
 - `INDEX` is compulsory when making an edit to patient details
 
 **Examples:**
-- `pt edit 1 n/Joshen Tan m/Heartbreak`
+- `pt edit 1 n/Joshen Tan m/Heartache`
 
 **Expected outcome:** <br>
 ```
 Edited Patient:
 Joshen Tan; Phone: 12345678; Email: google@gmail.com; Address: 311 clementi SG540192; Medical History: Heartache, recorded 31 Oct 2021
 ```
+
 ---
 
 ### Delete a patient: `pt delete`
@@ -227,9 +271,9 @@ Joshen Tan; Phone: 12345678; Email: google@gmail.com; Address: 311 clementi SG54
 
 ---
 
-### Add a Medical History: `pt ma`
+### Add a Medical Entry: `pt ma`
 
-Adds a medical history to the Patient Record, saving the medical history and ```today``` as the date of entry.
+Adds a medical entry to the Medical History of a Patient Record, saving the medical history and ```today``` as the date of entry.
 
 **Format:** `pt ma INDEX m/MEDICAL_HISTORY...`
 
@@ -245,9 +289,16 @@ pt ma 1 m/diabetes
 
 **Expected Outcome:**
 ```
-Updated:
-Alex Yeoh; Phone: 87438807; Email: alexyeoh@example.com; Address: Blk 30 Geylang Street 29, #06-40; Medical History: diabetes, recorded 28 Oct 2021, high blood pressure, recorded 28 Oct 2021, diabetes, recorded 28 Oct 2021
+Updated: 
+Charlotte Oliveiro; Phone: 93210283; Email: charlotte@example.com; Address: Blk 11 Ang Mo Kio Street 74, #11-04; Medical History: diabetes, recorded 8 Nov 2021
 ```
+
+**GUI Display:**
+![Add Medical History](images/AddMedicalHistory.png)
+
+**Restrictions:**
+- Can only add up to 8 medical entries per patient
+- Each medical entry can only have up to 50 characters
 
 ---
 
@@ -264,10 +315,9 @@ Deletes a medical history to the Patient Record.
 
 **Expected Outcome:**
 ```
-Updated:
-Alex Yeoh; Phone: 87438807; Email: alexyeoh@example.com; Address: Blk 30 Geylang Street 29, #06-40; Medical History: high blood pressure, recorded 28 Oct 2021, diabetes, recorded 28 Oct 2021
+Updated: 
+Charlotte Oliveiro; Phone: 93210283; Email: charlotte@example.com; Address: Blk 11 Ang Mo Kio Street 74, #11-04
 ```
-
 
 ---
 
@@ -309,6 +359,7 @@ Adds an appointment for the patient at the specified index in the Patients panel
 
 - `PATIENT_INDEX`: Index of patient who should have this appointment
 - `DATETIME`: Date and time of appointment in format `yyyy-mm-dd HHmm`
+  - Year must be between 2000 to 2999 inclusive.
 
 **Examples:**
 * `apmt add i/1 d/2021-10-05 1500` adds appointment on 5 Oct 2021 at 3pm to patient at index 1.
@@ -331,15 +382,8 @@ Shows the list of all appointments.
 **Examples:**
 * `apmt list`  Lists all appointments.
 
-**Expected Outcome:**
-```
-[UI CARDS]
-1. Patient Name: Bernice Yu | Appointment Date: 2021-10-05
-2. Patient Name: Alex Yeoh | Appointment Date: 2021-10-06
-3. Patient Name: Charlotte Oliveiro | Appointment Date: 2021-11-23
-
-Listed all appointments
-```
+**GUI Display:**
+![Appointment Card](images/AppointmentCard.png)
 
 ### List all archived appointments: `apmt alist`
 Shows the list of all archived appointments.
@@ -349,15 +393,8 @@ Shows the list of all archived appointments.
 **Examples:**
 * `apmt alist`  Lists all archived appointments.
 
-**Expected Outcome:**
-```
-[UI CARDS]
-1. Patient Name: Bernice Yu | Appointment Date: 2021-1-05
-2. Patient Name: Alex Yeoh | Appointment Date: 2021-1-06
-3. Patient Name: Charlotte Oliveiro | Appointment Date: 2021-1-23
-
-Listed all archived appointments
-```
+**GUI Display:**
+![Show Archived](images/ShowArchiveAppointments.png)
 
 ### Edit an appointment: `apmt edit`
 
@@ -368,6 +405,7 @@ Edits the details of an appointment at the specified index in the Appointments p
 - `APMT_INDEX`: Index of appointment in the Appointments panel
 - `PATIENT_INDEX`: Index of patient who should have this appointment
 - `DATETIME`: Date and time of appointment in format `yyyy-mm-dd HHmm`
+  - Year must be between 2000 to 2999 inclusive.
 - At least one of the optional fields should be present
 
 > :bulb: Use `i/PATIENT_INDEX` to change whose appointment it belongs to. <br>
@@ -429,23 +467,16 @@ Patient: Alex Yeoh; Datetime: 31 Dec 2012 1200; Prescription: []
 ```
 
 ### Sort all appointments: `apmt sort`
-Shows a sorted list of all appointments
+Shows a sorted list of all appointments based on urgency (appointments today > ascending date > ascending name).
 
 **Format:** `apmt sort`
 
 **Examples:**
-* `apmt sort`  Lists all appointments.
+* `apmt sort`  Lists all sorted appointments.
 
-**Expected Outcome:**
-```
-[UI CARDS]
-1. Patient Name: Bernice Yu | Appointment Date: 2021-06-05
-2. Patient Name: Charlotte Oliveiro | Appointment Date: 2021-07-21
-3. Patient Name: Alex Yeoh | Appointment Date: 2021-10-05
-4. Patient Name: David Li | Appointment Date: 2021-10-06
+**GUI Display:**
+![Sorted Appointments](images/SortAppointments.png)
 
-Sorted Appointments based on default settings.
-```
 ## Add prescription: `apmt pa`
 Adds a prescription to the designated appointment.
 
@@ -463,6 +494,9 @@ Medicine: Penicillin
 Volume: 400 ml
 Duration: 2 times a week
 ```
+
+**GUI Display:**
+![Add Prescription](images/AddPrescription.png)
 
 ## Delete prescription: `apmt pd`
 Deletes a prescription from the designated appointment.
@@ -536,3 +570,5 @@ from John Doe's appointment.
 | Patient Record      | A record of a patient's name, phone number, address, email and medical history.                                                 |
 | Prescription        | The issued medication/treatment for a patient along with a duration and volume.                                                           |
 | Expired Appointment | An appointment that is 24-hours past its scheduled time.                                                                                  |
+| Medical History     | A list of past medical conditions faced by a patient. Each medical condition is stored as a Medical Entry.                                |
+| Medical Entry       | Description of the past medical condition of a patient, with a date of record when the entry was recorded.                                 |
