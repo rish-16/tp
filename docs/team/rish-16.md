@@ -21,12 +21,13 @@ care services.
 
 ### Enhancements
 
-* Divided `Command` into `BasicCommand`, `PatientCommand`, and `AppointmentCommand` to promote better OOP.
-    * Allocated each existing and new command into these 3 categories based on purpose and function.
-* Divided `Parser` into `BasicParser`, `PatientParser`, and `AppointmentParser` to promote better OOP.
-    * Allocated each existing and new command parser into these 3 categories based on purpose and function.
-* Removed all mentions of `Tag` from the app and revamped Patient-related tests ([#248](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/248))
-* Wrote unit tests for `EditCommandTest` ([#287](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/287))
+- Divided `Command` into `BasicCommand`, `PatientCommand`, and `AppointmentCommand` to promote better OOP.
+  - Allocated each existing and new command into these 3 categories based on purpose and function.
+- Divided `Parser` into `BasicParser`, `PatientParser`, and `AppointmentParser` to promote better OOP.
+  - Allocated each existing and new command parser into these 3 categories based on purpose and function.
+- Removed all mentions of `Tag` from the app and revamped Patient-related tests ([#248](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/248))
+- Wrote unit tests for `EditCommandTest` ([#287](https://github.com/AY2122S1-CS2103-W14-1/tp/pull/287))
+
 ---
 
 ### Documentation
